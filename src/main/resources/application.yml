@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${PGSERVER:localhost}:5432/todomsg
+    username: postgres
+    password: postgres
+  jpa:
+    properties:
+      hibernate:
+        default_schema: todos
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    schemas: todos
