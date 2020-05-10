@@ -19,12 +19,20 @@ export default function TodoMsgBoard() {
   const classes = useStyles();
 
   const defaultDays = [
-    { name: 'Wed', date: 'May 6' },
-    { name: 'Thu', date: 'May 7' },
-    { name: 'Fri', date: 'May 8' },
-    { name: 'Sat', date: 'May 9' },
-    { name: 'Sun', date: 'May 10' },
-    { name: 'Mon', date: 'May 11' },
+    {
+      name: 'Wednesday',
+      date: 'May 6',
+      todos: [
+        { name: 'Buy Milk', time: 'Morning' },
+        { name: 'Call Mom', time: 'Morning' },
+        { name: 'Buy Eggs', time: 'Morning' },
+      ],
+    },
+    { name: 'Thursday', date: 'May 7', todos: [] },
+    { name: 'Friday', date: 'May 8', todos: [] },
+    { name: 'Saturday', date: 'May 9', todos: [] },
+    { name: 'Sunday', date: 'May 10', todos: [] },
+    { name: 'Monday', date: 'May 11', todos: [] },
   ];
 
   const [days, setDays] = React.useState(defaultDays);

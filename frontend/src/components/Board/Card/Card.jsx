@@ -2,14 +2,14 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
-import AddIcon from '@material-ui/icons/Add';
-import Checkbox from '@material-ui/core/Checkbox';
 import { Typography } from '@material-ui/core';
 import { Box } from '@material-ui/core';
+import Todo from './Todo/Todo';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
   paper: {
     maxWidth: 1000,
     margin: `${theme.spacing(2)}px auto`,
@@ -17,63 +17,58 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
   },
   todo: {
-    width: '90%',
+    width: '100%',
     marginLeft: 15,
   },
+  cardTitle: { color: theme.palette.secondary.main },
 }));
 
 // TODO add props type
 export default function TodoMsgBoardCard(props) {
   const classes = useStyles();
-  const [dayHover, setDayHover] = React.useState(1);
-
-  const dayHoverOver = () => {
-    setDayHover(10);
-  };
-  const dayHoverOut = () => {
-    setDayHover(1);
-  };
 
   return (
-    <Paper
-      className={classes.paper}
-      onMouseOver={dayHoverOver}
-      onMouseOut={dayHoverOut}
-      elevation={dayHover}
-    >
-      <Grid
-        container
-        direction="column"
-        alignItems="flex-start"
-        wrap="nowrap"
-        spacing={2}
-      >
-        <Grid item xs>
-          <Box display="flex" alignItems="center">
-            <Typography>{props.day.name}</Typography>
-            &nbsp;
-            <Typography>{props.day.date}</Typography>
-          </Box>
-        </Grid>
-        <Grid item xs>
-          <Box display="flex" alignItems="center">
-            <Checkbox inputProps={{ 'aria-label': 'primary checkbox' }} />
-            <Typography>Get Milk </Typography>
-          </Box>
-        </Grid>
-        <Grid container display="flex" alignItems="center">
-          <Grid item xs>
-            <TextField
-              id="standard-basic"
-              label="new todo..."
-              className={classes.todo}
-            ></TextField>
-            <IconButton aria-label="add new todo">
-              <AddIcon />
-            </IconButton>
+    <div className={classes.root}>
+      <Paper className={classes.paper} elevation={3}>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          className={classes.cardTitle}
+        >
+          <Typography variant="subtitle1">{props.day.name}</Typography>
+          &nbsp;
+          <Typography variant="caption">{props.day.date}</Typography>
+        </Box>
+        <Grid
+          container
+          direction="column"
+          alignItems="stretch"
+          justify="flex-start"
+          spacing={1}
+        >
+          {props.day.todos.map((t, index) => (
+            <Grid item>
+              <Todo
+                key={index}
+                todo={{
+                  new: false,
+                  name: t.name,
+                }}
+              />
+            </Grid>
+          ))}
+          <Grid item>
+            <Todo
+              key={'new-index-' + props.day.date}
+              todo={{
+                new: true,
+                name: 'Add new',
+              }}
+            />
           </Grid>
         </Grid>
-      </Grid>
-    </Paper>
+      </Paper>
+    </div>
   );
 }
