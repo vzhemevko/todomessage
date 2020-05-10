@@ -22,9 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// TODO add props type
 export default function TodoMsgBoardCard(props) {
   const classes = useStyles();
-
   const [dayHover, setDayHover] = React.useState(1);
 
   const dayHoverOver = () => {

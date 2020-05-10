@@ -19,8 +19,9 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import useStyles from './navbarStyle';
-import Board from '../Board/Board';
+import Board from 'components/Board/Board';
 
+// TODO extract Drawer and Appbar
 export default function TodoMsgNavbar() {
   const classes = useStyles();
   const theme = useTheme();

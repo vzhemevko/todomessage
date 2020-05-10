@@ -1,10 +1,11 @@
 import React from 'react';
+
+import { Box, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from './Card/Card';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import { Box } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
+
+import Card from 'components/Board/Card/Card';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,8 +44,8 @@ export default function TodoMsgBoard() {
           <KeyboardArrowUpIcon style={{ fontSize: '50px' }} />
         </IconButton>
       </Box>
-      {days.map((d) => (
-        <Card day={d} />
+      {days.map((d, index) => (
+        <Card day={d} key={index} />
       ))}
       <Box justifyContent="center" display="flex">
         <IconButton onClick={loadDaysDown}>
