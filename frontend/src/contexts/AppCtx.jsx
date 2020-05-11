@@ -1,14 +1,14 @@
 import React, { useState, createContext } from 'react';
 
-const AppContext = createContext([false, () => {}]);
+const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [cards, setCards] = useState([]);
 
   return (
-    <AppProvider.Provider value={[isLoading, setIsLoading]}>
+    <AppContext.Provider value={{ cards, setCards }}>
       {children}
-    </AppProvider.Provider>
+    </AppContext.Provider>
   );
 };
 

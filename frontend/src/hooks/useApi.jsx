@@ -1,21 +1,29 @@
-import { useContext } from 'react';
 import { useLoader } from './useLoader';
 import { useAlert } from './useAlert';
+import { useApp } from './useApp';
 
 import api from 'services/todoMsgApi';
 
 const useApi = () => {
   const { setIsLoading } = useLoader();
   const { openErrorAlert, openSuccessAlert } = useAlert();
+  const { cards, setCards } = useApp();
 
-  const getAllCards = () => {
+  const loadCards = () => {
     setIsLoading(true);
     api.get(
-      'boards',
+      'cards',
       (res) => {
-        openSuccessAlert('Loaded all cards ');
+        // TODO refactor
         setIsLoading(false);
-        console.log(res.data);
+        if (res.data) {
+          console.log(res.data);
+          setCards(res.data);
+          openSuccessAlert('Loaded all cards ');
+          console.log(cards);
+        } else {
+          openErrorAlert('Failed to load cards');
+        }
       },
       () => {
         openErrorAlert('Failed to load cards');
@@ -25,7 +33,7 @@ const useApi = () => {
   };
 
   return {
-    getAllCards,
+    loadCards,
   };
 };
 

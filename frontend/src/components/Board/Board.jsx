@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Box, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { useApi } from 'hooks/useApi';
+import { useApp } from 'hooks/useApp';
 
 import Card from 'components/Board/Card/Card';
 
@@ -18,7 +19,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TodoMsgBoard() {
   const classes = useStyles();
-  const { getAllCards } = useApi();
+  const { loadCards } = useApi();
+  const { cards } = useApp();
+
+  useEffect(() => {
+    loadCards();
+  }, []);
+
+  useEffect(() => {}, [cards]);
 
   const defaultDays = [
     {
@@ -42,26 +50,18 @@ export default function TodoMsgBoard() {
 
   const [days, setDays] = React.useState(defaultDays);
 
-  const loadDaysDown = () => {
-    setDays([...days, { name: 'Mon', date: 'Same' }]);
-  };
-
-  const loadDaysUp = () => {
-    setDays([{ name: 'Mon', date: 'Same' }, ...days]);
-  };
-
   return (
     <div className={classes.root}>
       <Box justifyContent="center" display="flex">
-        <IconButton onClick={getAllCards}>
+        <IconButton>
           <KeyboardArrowUpIcon style={{ fontSize: '50px' }} />
         </IconButton>
       </Box>
-      {days.map((d, index) => (
-        <Card day={d} key={index} />
+      {cards.map((c, index) => (
+        <Card card={c} key={index} />
       ))}
       <Box justifyContent="center" display="flex">
-        <IconButton onClick={loadDaysDown}>
+        <IconButton>
           <KeyboardArrowDownIcon style={{ fontSize: '50px' }} />
         </IconButton>
       </Box>

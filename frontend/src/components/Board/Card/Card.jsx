@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    maxWidth: 550,
+    maxWidth: 750,
     minWidth: 250,
     margin: `${theme.spacing(2)}px auto`,
     padding: theme.spacing(2),
@@ -41,9 +41,9 @@ export default function TodoMsgBoardCard(props) {
           justifyContent="center"
           className={classes.cardTitle}
         >
-          <Typography variant="h6">{props.day.name}</Typography>
+          <Typography variant="h6">{props.card.day}</Typography>
           &nbsp;
-          <Typography variant="caption">{props.day.date}</Typography>
+          <Typography variant="caption">{props.card.day}</Typography>
         </Box>
         <Grid
           container
@@ -52,24 +52,11 @@ export default function TodoMsgBoardCard(props) {
           justify="flex-start"
           spacing={1}
         >
-          {props.day.todos.map((t, index) => (
+          {props.card.todos.map((t, index) => (
             <Grid item key={index}>
-              <Todo
-                todo={{
-                  new: false,
-                  name: t.name,
-                }}
-              />
+              <Todo card={props.card} todo={t} />
             </Grid>
           ))}
-          <Grid item key={'new-index-' + props.day.date}>
-            <Todo
-              todo={{
-                new: true,
-                name: 'Add new',
-              }}
-            />
-          </Grid>
         </Grid>
       </Paper>
     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import IconButton from '@material-ui/core/IconButton';
@@ -39,6 +39,13 @@ function TimePicker() {
 // TODO add props type
 export default function TodoMsgTodoEdit(props) {
   const classes = useStyles();
+  const [todo, setTodo] = useState(props.todo);
+  let { card } = props;
+
+  const handleNameChange = (name) => {
+    card.todos = card.todos.map((t) => (t.id === todo.id ? todo : t));
+    setTodo({ ...todo, name });
+  };
 
   return (
     <Box>
@@ -48,12 +55,13 @@ export default function TodoMsgTodoEdit(props) {
             id="outlined-basic"
             variant="outlined"
             size="small"
-            value={props.todo.name}
+            value={todo.name}
             style={{ width: '100%' }} // TODO
+            onChange={(e) => handleNameChange(e.target.value)}
           />
         </Box>
 
-        {props.todo.new ? (
+        {false ? (
           <Box order={2} display="flex">
             <IconButton aria-label="delete todo" onClick={props.todoFinishEdit}>
               <CloseIcon />
@@ -75,7 +83,7 @@ export default function TodoMsgTodoEdit(props) {
       </Box>
       <Box display="flex" alignItems="center">
         <Box m={1}>
-          <Typography variant="subtitle2">Send Message </Typography>
+          <Typography variant="subtitle2">Notify</Typography>
         </Box>
         <Box m={1}>
           <ToggleButtonGroup size="small" exclusive value="morning">
