@@ -23,7 +23,7 @@ export default function TodoMsgTodoRead(props) {
           </IconButton>
         </Box>
       ) : (
-        <Box order={2}>
+        <Box order={2} display="flex">
           <IconButton aria-label="check todo">
             <CheckIcon />
           </IconButton>

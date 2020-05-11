@@ -18,6 +18,10 @@ dependencies {
     implementation group: 'org.flywaydb', name: 'flyway-core', version: '6.4.1'
 
     runtimeOnly 'org.postgresql:postgresql'
+
+    compileOnly  group: 'org.mapstruct', name: 'mapstruct', version: "${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
@@ -26,4 +30,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+compileJava {
+    options.compilerArgs = ["-Amapstruct.defaultComponentModel=spring",
+                            "-Amapstruct.unmappedTargetPolicy=IGNORE"]
 }

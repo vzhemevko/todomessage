@@ -14,6 +14,7 @@ import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 const useStyles = makeStyles((theme) => ({
   timeBtn: {
     width: 75,
+    height: 35,
   },
 }));
 
@@ -46,13 +47,14 @@ export default function TodoMsgTodoEdit(props) {
           <TextField
             id="outlined-basic"
             variant="outlined"
+            size="small"
             value={props.todo.name}
             style={{ width: '100%' }} // TODO
           />
         </Box>
 
         {props.todo.new ? (
-          <Box order={2}>
+          <Box order={2} display="flex">
             <IconButton aria-label="delete todo" onClick={props.todoFinishEdit}>
               <CloseIcon />
             </IconButton>
@@ -61,7 +63,7 @@ export default function TodoMsgTodoEdit(props) {
             </IconButton>
           </Box>
         ) : (
-          <Box order={2}>
+          <Box order={2} display="flex">
             <IconButton aria-label="delete todo">
               <DeleteIcon />
             </IconButton>

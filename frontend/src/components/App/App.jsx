@@ -6,8 +6,8 @@ import Navbar from 'components/Navbar/Navbar';
 import Loader from 'components/Loader/Loader';
 import Alert from 'components/Alert/Alert';
 
-import { LoaderProvider } from 'contexts/LoaderCx';
-import { AlertProvider } from 'contexts/AlertCx';
+import { LoaderProvider } from 'contexts/LoaderCtx';
+import { AlertProvider } from 'contexts/AlertCtx';
 
 export default function TodoMsgApp() {
   return (

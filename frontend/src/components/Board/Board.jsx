@@ -4,6 +4,7 @@ import { Box, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import { useApi } from 'hooks/useApi';
 
 import Card from 'components/Board/Card/Card';
 
@@ -17,13 +18,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TodoMsgBoard() {
   const classes = useStyles();
+  const { getAllCards } = useApi();
 
   const defaultDays = [
     {
       name: 'Wednesday',
       date: 'May 6',
       todos: [
-        { name: 'Buy Milk', time: 'Morning' },
+        {
+          name: 'Buy Milk',
+          time: 'Morning',
+        },
         { name: 'Call Mom', time: 'Morning' },
         { name: 'Buy Eggs', time: 'Morning' },
       ],
@@ -48,7 +53,7 @@ export default function TodoMsgBoard() {
   return (
     <div className={classes.root}>
       <Box justifyContent="center" display="flex">
-        <IconButton onClick={loadDaysUp}>
+        <IconButton onClick={getAllCards}>
           <KeyboardArrowUpIcon style={{ fontSize: '50px' }} />
         </IconButton>
       </Box>

@@ -11,16 +11,21 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   paper: {
-    maxWidth: 1000,
+    maxWidth: 550,
+    minWidth: 250,
     margin: `${theme.spacing(2)}px auto`,
     padding: theme.spacing(2),
     cursor: 'pointer',
+    background: theme.palette.primary.main,
   },
   todo: {
     width: '100%',
     marginLeft: 15,
   },
-  cardTitle: { color: theme.palette.secondary.main },
+  cardTitle: {
+    color: theme.palette.secondary.main,
+    paddingBottom: theme.spacing(2),
+  },
 }));
 
 // TODO add props type
@@ -36,7 +41,7 @@ export default function TodoMsgBoardCard(props) {
           justifyContent="center"
           className={classes.cardTitle}
         >
-          <Typography variant="subtitle1">{props.day.name}</Typography>
+          <Typography variant="h6">{props.day.name}</Typography>
           &nbsp;
           <Typography variant="caption">{props.day.date}</Typography>
         </Box>

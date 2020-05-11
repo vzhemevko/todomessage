@@ -1,10 +1,10 @@
 import { useContext } from 'react';
-import { LoaderContext } from 'contexts/LoaderCx';
+import { LoaderContext } from 'contexts/LoaderCtx';
 
-const useLoader = (loading) => {
+const useLoader = () => {
   const [isLoading, setIsLoading] = useContext(LoaderContext);
 
-  return [isLoading, setIsLoading];
+  return { isLoading, setIsLoading };
 };
 
 export { useLoader };
