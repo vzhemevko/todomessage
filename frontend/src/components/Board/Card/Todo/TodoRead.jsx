@@ -10,7 +10,7 @@ import { Box } from '@material-ui/core';
 export default function TodoMsgTodoRead(props) {
   return (
     <Box display="flex" alignItems="center">
-      <Box order={1} flexGrow={1}>
+      <Box order={1} flexGrow={1} onClick={props.todoStartEdit}>
         <Typography variant={props.todo.new ? 'subtitle2' : 'subtitle1'}>
           {props.todo.name}
         </Typography>
@@ -18,16 +18,16 @@ export default function TodoMsgTodoRead(props) {
 
       {props.todo.new ? (
         <Box order={2}>
-          <IconButton aria-label="add new todo">
+          <IconButton aria-label="add new todo" onClick={props.todoStartEdit}>
             <AddIcon />
           </IconButton>
         </Box>
       ) : (
         <Box order={2}>
-          <IconButton aria-label="edit todo">
+          <IconButton aria-label="check todo">
             <CheckIcon />
           </IconButton>
-          <IconButton aria-label="edit todo">
+          <IconButton aria-label="edit todo" onClick={props.todoStartEdit}>
             <EditIcon />
           </IconButton>
         </Box>

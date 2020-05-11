@@ -7,6 +7,7 @@ import { Typography } from '@material-ui/core';
 import { Box } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
+import CloseIcon from '@material-ui/icons/Close';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
@@ -52,16 +53,19 @@ export default function TodoMsgTodoEdit(props) {
 
         {props.todo.new ? (
           <Box order={2}>
+            <IconButton aria-label="delete todo" onClick={props.todoFinishEdit}>
+              <CloseIcon />
+            </IconButton>
             <IconButton aria-label="add new todo">
               <AddIcon />
             </IconButton>
           </Box>
         ) : (
           <Box order={2}>
-            <IconButton aria-label="edit todo">
+            <IconButton aria-label="delete todo">
               <DeleteIcon />
             </IconButton>
-            <IconButton aria-label="edit todo">
+            <IconButton aria-label="save todo" onClick={props.todoFinishEdit}>
               <SaveIcon />
             </IconButton>
           </Box>

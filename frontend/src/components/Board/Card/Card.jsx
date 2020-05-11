@@ -48,9 +48,8 @@ export default function TodoMsgBoardCard(props) {
           spacing={1}
         >
           {props.day.todos.map((t, index) => (
-            <Grid item>
+            <Grid item key={index}>
               <Todo
-                key={index}
                 todo={{
                   new: false,
                   name: t.name,
@@ -58,9 +57,8 @@ export default function TodoMsgBoardCard(props) {
               />
             </Grid>
           ))}
-          <Grid item>
+          <Grid item key={'new-index-' + props.day.date}>
             <Todo
-              key={'new-index-' + props.day.date}
               todo={{
                 new: true,
                 name: 'Add new',

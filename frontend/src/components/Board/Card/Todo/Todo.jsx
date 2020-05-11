@@ -35,7 +35,6 @@ export default function TodoMsgTodo(props) {
   };
 
   const todoFinishEdit = () => {
-    console.log('todoFinishEdit');
     setEdit(false);
   };
 
@@ -45,26 +44,25 @@ export default function TodoMsgTodo(props) {
       onMouseOver={todoHoverOver}
       onMouseOut={todoHoverOut}
       elevation={todoElevation}
-      onClick={todoStartEdit}
     >
       <Zoom
         in={!edit}
-        style={{ transitionDelay: !edit ? '100ms' : '300ms' }}
+        style={{ transitionDelay: !edit ? '100ms' : '100ms' }}
         unmountOnExit={true}
       >
         <div>
           <div>
-            <TodoRead {...props} />
+            <TodoRead {...props} todoStartEdit={todoStartEdit} />
           </div>
         </div>
       </Zoom>
       <Zoom
         in={edit}
-        style={{ transitionDelay: edit ? '300ms' : '300ms' }}
+        style={{ transitionDelay: edit ? '100ms' : '100ms' }}
         unmountOnExit={true}
       >
         <div>
-          <TodoEdit {...props} finishEdit={edit} />
+          <TodoEdit {...props} todoFinishEdit={todoFinishEdit} />
         </div>
       </Zoom>
     </Paper>
