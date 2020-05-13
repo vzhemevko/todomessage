@@ -11,7 +11,11 @@ public class TodoDto {
 
     private Time dueTime;
 
-    private String done;
+    private Boolean ready;
+
+    private Boolean done;
+
+    private String position;
 
     private UUID cardId;
 
@@ -39,12 +43,28 @@ public class TodoDto {
         this.dueTime = dueTime;
     }
 
-    public String getDone() {
+    public Boolean getReady() {
+        return ready;
+    }
+
+    public void setReady(Boolean ready) {
+        this.ready = ready;
+    }
+
+    public Boolean getDone() {
         return done;
     }
 
-    public void setDone(String done) {
+    public void setDone(Boolean done) {
         this.done = done;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public UUID getCardId() {

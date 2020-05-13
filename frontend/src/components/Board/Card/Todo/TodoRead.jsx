@@ -1,36 +1,38 @@
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import CheckIcon from '@material-ui/icons/Check';
 import { Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 
-// TODO add props type
-export default function TodoMsgTodoRead(props) {
-  return (
-    <Box display="flex" alignItems="center">
-      <Box order={1} flexGrow={1} onClick={props.todoStartEdit}>
-        <Typography variant={props.todo.new ? 'subtitle2' : 'subtitle1'}>
-          {props.todo.name}
-        </Typography>
-      </Box>
+const useStyles = makeStyles((theme) => ({
+  paperTodo: {
+    width: '100%',
+    margin: `${theme.spacing(0.1)}px auto`,
+    paddingLeft: theme.spacing(2),
+    paddingRight: theme.spacing(2),
+    padding: theme.spacing(0.5),
+    cursor: 'pointer',
+  },
+  doneTodo: {
+    textDecoration: 'line-through',
+  },
+}));
 
-      {props.todo.new ? (
-        <Box order={2}>
-          <IconButton aria-label="add new todo" onClick={props.todoStartEdit}>
-            <AddIcon />
-          </IconButton>
-        </Box>
+// TODO add props type
+export default function TodoMsgTodo({ todoState }) {
+  const classes = useStyles();
+  return (
+    <Box>
+      {todoState.ready ? (
+        <Typography
+          variant="subtitle1"
+          className={todoState.done ? classes.doneTodo : null}
+        >
+          {todoState.name}{' '}
+        </Typography>
       ) : (
-        <Box order={2} display="flex">
-          <IconButton aria-label="check todo">
-            <CheckIcon />
-          </IconButton>
-          <IconButton aria-label="edit todo" onClick={props.todoStartEdit}>
-            <EditIcon />
-          </IconButton>
-        </Box>
+        <Typography variant="subtitle2" color="textSecondary">
+          Finish editing to receive a notification message
+        </Typography>
       )}
     </Box>
   );

@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.todomessage.entities.Todo;
 
 @Repository
-public interface TodoRepository extends JpaRepository<Todo, UUID> {}
+public interface TodoRepository extends JpaRepository<Todo, UUID> {
+}
+
+

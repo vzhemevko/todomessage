@@ -3,6 +3,7 @@ package org.todomessage.entities;
 import java.sql.Date;
 import java.util.Set;
 import java.util.UUID;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Card {
@@ -24,7 +26,8 @@ public class Card {
     @JoinColumn(name = "board_id")
     private Board board;
 
-    @OneToMany(mappedBy = "card", fetch = FetchType.LAZY)
+    @OrderBy("position ASC")
+    @OneToMany(mappedBy = "card", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Todo> todos;
 
     public UUID getId() {

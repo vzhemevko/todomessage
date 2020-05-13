@@ -4,7 +4,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 import { Box } from '@material-ui/core';
-import Todo from './Todo/Todo';
+import TodoOne from './Todo/Todo';
+import AddIcon from '@material-ui/icons/Add';
+import IconButton from '@material-ui/core/IconButton';
+
+import { useApi } from 'hooks/useApi';
+import { useApp } from 'hooks/useApp';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,11 +31,29 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary.main,
     paddingBottom: theme.spacing(2),
   },
+  addBtn: {
+    margin: 10,
+  },
 }));
 
 // TODO add props type
 export default function TodoMsgBoardCard(props) {
   const classes = useStyles();
+  const { addNewTodo } = useApp();
+  const { createTodo } = useApi();
+
+  const handleAddNewTodo = () => {
+    let todo = {
+      cardId: props.card.id,
+      id: '',
+      name: '',
+      dueTime: '06:00:00',
+      ready: false,
+      done: false,
+      position: props.card.todos.length + 1,
+    };
+    createTodo(todo);
+  };
 
   return (
     <div className={classes.root}>
@@ -54,10 +77,20 @@ export default function TodoMsgBoardCard(props) {
         >
           {props.card.todos.map((t, index) => (
             <Grid item key={index}>
-              <Todo card={props.card} todo={t} />
+              <TodoOne card={props.card} todo={t} isNewTodo={false} />
             </Grid>
           ))}
         </Grid>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="flex-end"
+          className={classes.addBtn}
+        >
+          <IconButton aria-label="add todo" onClick={handleAddNewTodo}>
+            <AddIcon fontSize="large" />
+          </IconButton>
+        </Box>
       </Paper>
     </div>
   );

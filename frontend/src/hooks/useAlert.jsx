@@ -20,11 +20,17 @@ const useAlert = () => {
   const openErrorAlert = (message) => {
     showAlert('error', message);
   };
+
+  const openWarningAlert = (message) => {
+    showAlert('warning', message);
+  };
+
   const openSuccessAlert = (message) => {
     showAlert('success', message);
   };
-  const openWarningAlert = (message) => {
-    showAlert('warning', message);
+
+  const openInfoAlert = (message) => {
+    showAlert('info', message);
   };
 
   return {
@@ -33,8 +39,9 @@ const useAlert = () => {
     open,
     closeAlert,
     openErrorAlert,
-    openSuccessAlert,
     openWarningAlert,
+    openSuccessAlert,
+    openInfoAlert,
   };
 };
 

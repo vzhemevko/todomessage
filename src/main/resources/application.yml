@@ -10,6 +10,7 @@ spring:
     properties:
       hibernate:
         default_schema: todos
+        show_sql: true
     hibernate:
       ddl-auto: validate
   flyway:

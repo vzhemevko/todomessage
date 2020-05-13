@@ -10,4 +10,12 @@ export default {
   post(location, body, success, error, params) {
     axios.post(API_BASE + location, body, params).then(success, error);
   },
+  put(location, body, success, error, params) {
+    axios.put(API_BASE + location, body, params).then(success, error);
+  },
+  remove(location, body, success, error, params) {
+    axios
+      .delete(API_BASE + location, { data: body }, params)
+      .then(success, error);
+  },
 };

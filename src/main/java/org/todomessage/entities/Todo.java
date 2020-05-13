@@ -1,6 +1,5 @@
 package org.todomessage.entities;
 
-import java.sql.Date;
 import java.sql.Time;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -23,9 +22,13 @@ public class Todo {
     @Column(name = "due_time")
     private Time dueTime;
 
+    private Boolean ready;
+
     private Boolean done;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    private Integer position;
+
+    @ManyToOne(fetch = FetchType.LAZY/*, cascade = CascadeType.MERGE*/)
     @JoinColumn(name = "card_id")
     private Card card;
 
@@ -53,12 +56,28 @@ public class Todo {
         this.dueTime = dueTime;
     }
 
+    public Boolean getReady() {
+        return ready;
+    }
+
+    public void setReady(Boolean ready) {
+        this.ready = ready;
+    }
+
     public Boolean getDone() {
         return done;
     }
 
     public void setDone(Boolean done) {
         this.done = done;
+    }
+
+    public Integer getPosition() {
+        return position;
+    }
+
+    public void setPosition(Integer position) {
+        this.position = position;
     }
 
     public Card getCard() {
