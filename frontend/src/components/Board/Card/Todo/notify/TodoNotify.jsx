@@ -23,8 +23,6 @@ export default function TodoMsgTodoNotify({
 }) {
   const classes = useStyles();
 
-  const handleTimeChange = (time) => {};
-
   return (
     <Box display="flex" alignItems="center">
       <Box m={1}>
@@ -51,10 +49,10 @@ export default function TodoMsgTodoNotify({
           <KeyboardTimePicker
             ampm={false}
             value={`${day}T${todoState.dueTime}`}
-            format="hh:mm"
             onChange={(time) =>
               handleTodoDueTimeChange(format(time, 'hh:mm:ss'))
             }
+            className={classes.formControl}
           />
         </MuiPickersUtilsProvider>
       </Box>

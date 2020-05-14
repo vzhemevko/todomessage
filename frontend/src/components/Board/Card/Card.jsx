@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
@@ -30,7 +31,7 @@ export default function TodoMsgCard(props) {
 
   return (
     <div className={classes.root}>
-      <Paper className={classes.paper} elevation={3}>
+      <Paper className={classes.cardPaper} elevation={3}>
         <Box
           display="flex"
           alignItems="center"

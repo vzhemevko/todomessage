@@ -1,5 +1,8 @@
 package org.todomessage.entities;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -8,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import static java.util.Objects.*;
 
 @Entity
 public class Board {
@@ -22,6 +27,8 @@ public class Board {
 
     @Column(name = "time_zone")
     private String timeZone;
+
+    private String emails;
 
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
     private Set<Card> cards;
@@ -48,6 +55,14 @@ public class Board {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    public List<String> getEmails() {
+        return nonNull(emails) ? Arrays.asList(emails.split("\\s*,\\s*")) : new ArrayList<>();
+    }
+
+    public void setEmails(List<String> emails) {
+        this.emails = nonNull(emails) ? String.join(",", emails) : "";
     }
 
     public String getTimeZone() {

@@ -4,12 +4,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  paper: {
+  cardPaper: {
     maxWidth: 750,
     minWidth: 250,
     margin: `${theme.spacing(2)}px auto`,
     padding: theme.spacing(2),
-    cursor: 'pointer',
     background: theme.palette.primary.main,
   },
   todo: {

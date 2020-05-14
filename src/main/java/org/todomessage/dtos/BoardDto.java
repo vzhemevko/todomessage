@@ -11,6 +11,8 @@ public class BoardDto {
 
     private String timeZone;
 
+    private List<String> emails;
+
     private List<CardDto> cards;
 
     public UUID getId() {
@@ -27,6 +29,14 @@ public class BoardDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<String> getEmails() {
+        return emails;
+    }
+
+    public void setEmails(List<String> emails) {
+        this.emails = emails;
     }
 
     public String getTimeZone() {
