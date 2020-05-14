@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import App from './components/App/App';
+import Login from './components/Login/Login';
 
 const theme = createMuiTheme({
   palette: {
@@ -20,8 +21,6 @@ const theme = createMuiTheme({
 });
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <App />
-  </ThemeProvider>,
+  <ThemeProvider theme={theme}>{false ? <Login /> : <App />}</ThemeProvider>,
   document.getElementById('root')
 );

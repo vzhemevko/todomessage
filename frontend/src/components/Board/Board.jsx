@@ -55,8 +55,8 @@ export default function TodoMsgBoard() {
           </Typography>
           {!emailsValid ? (
             <Typography variant="subtitle2" className={classes.emailsNotValid}>
-              &nbsp;please note some of them is not a valid email address,
-              correct them to receive the messages
+              &nbsp;please note some of the addresses is not a valid email
+              address, correct them to receive the messages
             </Typography>
           ) : null}
         </Box>
