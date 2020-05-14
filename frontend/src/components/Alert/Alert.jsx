@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 
-import { useAlert } from 'hooks/useAlert';
+import { useApp } from 'hooks/useApp';
 
 export default function TodoMsgAlert({ elevation }) {
-  const { message, type, open, closeAlert } = useAlert();
+  const { message, type, open, closeAlert } = useApp();
 
   return (
     <Snackbar

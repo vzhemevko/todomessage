@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import { Box } from '@material-ui/core';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputBase from '@material-ui/core/InputBase';
 import {
   KeyboardTimePicker,
   MuiPickersUtilsProvider,
@@ -17,14 +12,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import 'date-fns';
 import { format } from 'date-fns';
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    minWidth: 110,
-  },
-  selectEmpty: {
-    //marginTop: theme.spacing(1),
-  },
-}));
+import useStyles from './todoNotifyStyle';
 
 // TODO add props type
 export default function TodoMsgTodoNotify({

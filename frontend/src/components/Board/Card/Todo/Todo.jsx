@@ -5,45 +5,28 @@ import EditIcon from '@material-ui/icons/Edit';
 import CheckIcon from '@material-ui/icons/Check';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
-import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
-import TodoEditOne from './TodoEdit';
-import TodoNotifyOne from './TodoNotify';
-import TodoReadOne from './TodoRead';
-import Tooltip from '@material-ui/core/Tooltip';
-import Zoom from '@material-ui/core/Zoom';
+import TodoEditOne from './edit/TodoEdit';
+import TodoNotifyOne from './notify/TodoNotify';
+import TodoReadOne from './read/TodoRead';
 
-import { useApi } from 'hooks/useApi';
 import { useApp } from 'hooks/useApp';
-import { useAlert } from 'hooks/useAlert';
-
-const useStyles = makeStyles((theme) => ({
-  paperTodo: {
-    width: '100%',
-    margin: `${theme.spacing(0.1)}px auto`,
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    padding: theme.spacing(0.5),
-    cursor: 'pointer',
-  },
-  iconAction: {
-    color: theme.palette.action.main,
-  },
-}));
+import { useAlert } from 'hooks/common/useAlert';
+import useStyles from './todoStyle';
 
 // TODO add props type
 export default function TodoMsgTodo(props) {
   const classes = useStyles();
   const [todoElevation, setTodoElevation] = useState(1);
+
   const [edit, setEdit] = useState(false);
   const [notify, setNotify] = useState(false);
   const [read, setRead] = useState(true);
-  const [valid, setValid] = useState(false);
+
   const [todoState, setTodoState] = useState(props.todo);
   const [dueTimeFixed, setDueTimeFixed] = useState('06:00:00');
-  const { setTodo } = useApp();
-  const { updateCard, deleteTodo, updateTodo } = useApi();
-  const { openInfoAlert } = useAlert();
+
+  const { deleteTodo, updateTodo, openInfoAlert } = useApp();
 
   useEffect(() => {
     setTodoState(props.todo);
@@ -66,13 +49,17 @@ export default function TodoMsgTodo(props) {
     setEdit(false);
     setNotify(false);
     setRead(true);
-
-    /* let todoDone = !todoState.done;
-    setTodoState({ ...todoState, done: todoDone });
-    if (!todoState.done) {
-      openInfoAlert('Notification are not sent for the completed todos');
-    } */
+    handleDone();
     updateTodo(todoState);
+  };
+
+  const handleDone = () => {
+    if (read) {
+      props.todo.done = !props.todo.done;
+      if (props.todo.done) {
+        openInfoAlert('Notification are not sent for the completed todos');
+      }
+    }
   };
 
   const switchNotify = () => {

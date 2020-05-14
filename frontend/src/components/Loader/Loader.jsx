@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { useLoader } from 'hooks/useLoader';
+import { useLoader } from 'hooks/common/useLoader';
 
 export default function TodoMsgLoader() {
   const { isLoading } = useLoader();

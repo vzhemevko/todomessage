@@ -6,15 +6,15 @@ import Navbar from 'components/Navbar/Navbar';
 import Loader from 'components/Loader/Loader';
 import Alert from 'components/Alert/Alert';
 
-import { AppProvider } from 'contexts/AppCtx';
-import { LoaderProvider } from 'contexts/LoaderCtx';
-import { AlertProvider } from 'contexts/AlertCtx';
+import { AppStateProvider } from 'contexts/AppContext';
+import { LoaderProvider } from 'contexts/LoaderContext';
+import { AlertProvider } from 'contexts/AlertContext';
 
 export default function TodoMsgApp() {
   return (
     <div>
       <CssBaseline />
-      <AppProvider>
+      <AppStateProvider>
         <LoaderProvider>
           <AlertProvider>
             <Navbar />
@@ -22,7 +22,7 @@ export default function TodoMsgApp() {
             <Alert />
           </AlertProvider>
         </LoaderProvider>
-      </AppProvider>
+      </AppStateProvider>
     </div>
   );
 }

@@ -1,16 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Box } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  class: {},
-}));
-
 // TODO add props type
-export default function TodoMsgTodo({ todoState, handleTodoNameChange }) {
-  const classes = useStyles();
-
+export default function TodoMsgTodoEdit({ todoState, handleTodoNameChange }) {
   return (
     <Box>
       <TextField

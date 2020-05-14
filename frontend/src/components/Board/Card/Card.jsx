@@ -1,6 +1,5 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 import { Box } from '@material-ui/core';
@@ -8,41 +7,15 @@ import TodoOne from './Todo/Todo';
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
 
-import { useApi } from 'hooks/useApi';
 import { useApp } from 'hooks/useApp';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    maxWidth: 750,
-    minWidth: 250,
-    margin: `${theme.spacing(2)}px auto`,
-    padding: theme.spacing(2),
-    cursor: 'pointer',
-    background: theme.palette.primary.main,
-  },
-  todo: {
-    width: '100%',
-    marginLeft: 15,
-  },
-  cardTitle: {
-    color: theme.palette.secondary.main,
-    paddingBottom: theme.spacing(2),
-  },
-  addBtn: {
-    margin: 10,
-  },
-}));
+import useStyles from './cardStyle';
 
 // TODO add props type
-export default function TodoMsgBoardCard(props) {
+export default function TodoMsgCard(props) {
   const classes = useStyles();
-  const { addNewTodo } = useApp();
-  const { createTodo } = useApi();
+  const { createTodo } = useApp();
 
-  const handleAddNewTodo = () => {
+  const handleAddTodo = () => {
     let todo = {
       cardId: props.card.id,
       id: '',
@@ -87,7 +60,7 @@ export default function TodoMsgBoardCard(props) {
           justifyContent="flex-end"
           className={classes.addBtn}
         >
-          <IconButton aria-label="add todo" onClick={handleAddNewTodo}>
+          <IconButton aria-label="add todo" onClick={handleAddTodo}>
             <AddIcon fontSize="large" />
           </IconButton>
         </Box>

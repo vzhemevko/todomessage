@@ -1,24 +1,11 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-  paperTodo: {
-    width: '100%',
-    margin: `${theme.spacing(0.1)}px auto`,
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
-    padding: theme.spacing(0.5),
-    cursor: 'pointer',
-  },
-  doneTodo: {
-    textDecoration: 'line-through',
-  },
-}));
+import useStyles from './todoReadStyle';
 
 // TODO add props type
-export default function TodoMsgTodo({ todoState }) {
+export default function TodoMsgTodoRead({ todoState }) {
   const classes = useStyles();
   return (
     <Box>
