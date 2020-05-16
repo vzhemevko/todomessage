@@ -8,13 +8,13 @@
 .spinner {
   width: 70px;
   text-align: left;
-  color: '#6a1b9a';
+  color: '#2194f3';
 }
 
 .spinner > div {
   width: 20px;
   height: 20px;
-  background-color: #6a1b9a;
+  background-color: #2194f3;
   border-radius: 100%;
   display: inline-block;
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;

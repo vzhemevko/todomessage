@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
   },
   emailPaper: {
     minWidth: 250,
+    maxWidth: 1000,
     margin: `${theme.spacing(2)}px auto`,
     padding: theme.spacing(2),
   },
@@ -15,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'start',
     alignItems: 'center',
-    color: theme.palette.primary.main,
-    background: theme.palette.secondary.main,
+    color: theme.palette.caption.main,
+    background: theme.palette.secondary.light,
     borderRadius: 5,
     padding: theme.spacing(2),
   },

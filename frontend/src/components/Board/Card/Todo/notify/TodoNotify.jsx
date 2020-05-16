@@ -42,7 +42,6 @@ export default function TodoMsgTodoNotify({
             displayEmpty
             className={classes.selectEmpty}
             inputProps={{ 'aria-label': 'Without label' }}
-            color={'secondary'}
           >
             <MenuItem value={dueTimeFixed}>at</MenuItem>
             <MenuItem value={'06:00:00'}>Morning</MenuItem>

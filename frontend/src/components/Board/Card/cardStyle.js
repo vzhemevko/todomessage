@@ -15,13 +15,13 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 15,
   },
   cardHeader: {
-    background: theme.palette.primary.main,
+    background: theme.palette.secondary.main,
     borderRadius: 5,
-    color: theme.palette.secondary.main,
+    //color: theme.palette.primary.main,
     paddingBottom: theme.spacing(1),
   },
   cardHeaderTitle: {
-    color: theme.palette.secondary.main,
+    //color: theme.palette.secondary.light,
   },
   cardContent: {
     //background: theme.palette.primary.main,
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    background: theme.palette.secondary.main,
+    //background: theme.palette.secondary.main,
     borderRadius: 5,
   },
   cardActionsIcon: {

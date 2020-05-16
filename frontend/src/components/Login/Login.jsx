@@ -28,16 +28,16 @@ export default function TodoMsgLogin() {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Typography component="h1" variant="h4" color="secondary">
+          <Typography component="h1" variant="h4">
             Todo Message
           </Typography>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon color="primary" />
+            <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="subtitle1">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate onSubmit={signInBoard}>
+          <form className={classes.form} onSubmit={signInBoard}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -49,7 +49,6 @@ export default function TodoMsgLogin() {
               autoFocus
               value={boardName}
               onChange={(event) => setBoardName(event.target.value)}
-              color={'secondary'}
             />
             <TextField
               variant="outlined"
@@ -63,20 +62,19 @@ export default function TodoMsgLogin() {
               autoComplete="current-password"
               value={boardKey}
               onChange={(event) => setBoardKey(event.target.value)}
-              color={'secondary'}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              color="secondary"
+              color="primary"
               className={classes.submit}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2" color="secondary">
+                <Link href="#" variant="body2">
                   {"Don't have a board? Create one"}
                 </Link>
               </Grid>

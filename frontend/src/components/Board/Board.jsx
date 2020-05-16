@@ -29,9 +29,6 @@ export default function TodoMsgBoard() {
   }, [emails]);
 
   const handleEmailAdd = (email) => {
-    validateEmail(email)
-      ? console.log('Email valid')
-      : console.log('Email not valid');
     setEmails([...emails, email]);
   };
 
@@ -46,8 +43,7 @@ export default function TodoMsgBoard() {
       <Paper className={classes.emailPaper} elevation={3}>
         <Box className={classes.emailHeader}>
           <Typography variant="subtitle1">
-            Todo notification messages will be sent to the below email
-            addresses:
+            Todo notification messages will be sent to the below email addresses
           </Typography>
         </Box>
         <Box className={classes.emailSubHeader}>

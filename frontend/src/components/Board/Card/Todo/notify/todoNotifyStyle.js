@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
 const customTheme = createMuiTheme({
   palette: {
     primary: {
-      main: '#3c1a5b',
-      contrastText: '#fff748',
+      main: '#6a1b9a',
+      contrastText: '#ffeb3b',
     },
   },
 });

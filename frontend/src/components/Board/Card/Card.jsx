@@ -65,7 +65,7 @@ export default function TodoMsgCard(props) {
               onClick={handleAddTodo}
               className={classes.cardActionsIcon}
             >
-              <AddIcon fontSize="large" />
+              <AddIcon fontSize="default" />
             </IconButton>
           </CardActions>
         </div>
