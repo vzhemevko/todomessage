@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
@@ -6,29 +7,28 @@ import CheckIcon from '@material-ui/icons/Check';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 import { Box } from '@material-ui/core';
-import TodoEditOne from './edit/TodoEdit';
-import TodoNotifyOne from './notify/TodoNotify';
-import TodoReadOne from './read/TodoRead';
+import TodoEditOne from 'components/Board/Card/Todo/Edit/TodoEdit';
+import TodoNotifyOne from 'components/Board/Card/Todo/Notify/TodoNotify';
+import TodoReadOne from 'components/Board/Card/Todo/Read/TodoRead';
 
 import { useApp } from 'hooks/useApp';
-import { useAlert } from 'hooks/common/useAlert';
-import useStyles from './todoStyle';
+import useStyles from 'components/Board/Card/Todo/todoStyle';
 
 // TODO add props type
 export default function TodoMsgTodo(props) {
   const classes = useStyles();
-  const [todoElevation, setTodoElevation] = useState(1);
+  const [todoElevation, setTodoElevation] = React.useState(1);
 
-  const [edit, setEdit] = useState(false);
-  const [notify, setNotify] = useState(false);
-  const [read, setRead] = useState(true);
+  const [edit, setEdit] = React.useState(false);
+  const [notify, setNotify] = React.useState(false);
+  const [read, setRead] = React.useState(true);
 
-  const [todoState, setTodoState] = useState(props.todo);
-  const [dueTimeFixed, setDueTimeFixed] = useState('06:00:00');
+  const [todoState, setTodoState] = React.useState(props.todo);
+  const [dueTimeFixed, setDueTimeFixed] = React.useState('06:00:00');
 
   const { deleteTodo, updateTodo, openInfoAlert } = useApp();
 
-  useEffect(() => {
+  React.useEffect(() => {
     setTodoState(props.todo);
   }, [props.todo]);
 
@@ -92,8 +92,6 @@ export default function TodoMsgTodo(props) {
       >
         <Box display="flex" justifyContent="flex-start" alignItems="center">
           <Box order={1} flexGrow={1}>
-            <span />
-
             <Box>
               {read ? (
                 <Box onClick={switchEdit}>
@@ -104,6 +102,7 @@ export default function TodoMsgTodo(props) {
                 <TodoEditOne
                   todoState={todoState}
                   handleTodoNameChange={handleTodoNameChange}
+                  switchRead={switchRead}
                 />
               ) : null}
               {notify ? (
@@ -133,7 +132,11 @@ export default function TodoMsgTodo(props) {
               <IconButton aria-label="alarm todo" onClick={switchNotify}>
                 <AlarmOnIcon />
               </IconButton>
-              <IconButton aria-label="delete todo" onClick={handleTodoDelete}>
+              <IconButton
+                aria-label="delete todo"
+                onClick={handleTodoDelete}
+                className={classes.iconDefault}
+              >
                 <DeleteIcon />
               </IconButton>
             </Box>

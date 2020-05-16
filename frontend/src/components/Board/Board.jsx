@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { Box, IconButton, Typography, Divider } from '@material-ui/core';
+import { Box, IconButton, Typography } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Card from 'components/Board/Card/Card';
@@ -8,7 +8,7 @@ import ChipInput from 'material-ui-chip-input';
 import Paper from '@material-ui/core/Paper';
 
 import { useApp } from 'hooks/useApp';
-import useStyles from './boardStyle';
+import useStyles from 'components/Board/boardStyle';
 
 const validateEmail = (email) => {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -19,13 +19,9 @@ export default function TodoMsgBoard() {
   const classes = useStyles();
   const [emails, setEmails] = React.useState(['foo', 'boo']);
   const [emailsValid, setEmailsValid] = React.useState(false);
-  const { cards, loadCards } = useApp();
+  const { cards } = useApp();
 
-  useEffect(() => {
-    loadCards();
-  }, []);
-
-  useEffect(() => {
+  React.useEffect(() => {
     let notValidEmails = emails.filter((e) => {
       return !validateEmail(e);
     });
@@ -48,27 +44,29 @@ export default function TodoMsgBoard() {
   return (
     <div className={classes.root}>
       <Paper className={classes.emailPaper} elevation={3}>
-        <Box display="flex" justifyContent="start" alignItems="center" m={1}>
+        <Box className={classes.emailHeader}>
           <Typography variant="subtitle1">
             Todo notification messages will be sent to the below email
             addresses:
           </Typography>
+        </Box>
+        <Box className={classes.emailSubHeader}>
           {!emailsValid ? (
-            <Typography variant="subtitle2" className={classes.emailsNotValid}>
+            <Typography variant="caption" className={classes.emailsNotValid}>
               &nbsp;please note some of the addresses is not a valid email
               address, correct them to receive the messages
             </Typography>
           ) : null}
         </Box>
-
-        <Box justifyContent="start" display="flex">
+        <Box className={classes.emailInput}>
           <ChipInput
             value={emails}
             //onChange={handleEmailChange}
             onAdd={handleEmailAdd}
             onDelete={(email, index) => handleEmailDelete(email, index)}
-            className={classes.emailInput}
+            fullWidth
             variant={'outlined'}
+            color={'secondary'}
           />
         </Box>
       </Paper>

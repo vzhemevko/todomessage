@@ -3,23 +3,24 @@ import { useCardState } from 'hooks/state/useCardState';
 import { useLoader } from 'hooks/common/useLoader';
 import { useAlert } from 'hooks/common/useAlert';
 
-import api from 'services/api';
+import { useApi } from 'hooks/api/useApi';
 
 const useCardApi = () => {
   const { setCards, setCard } = useCardState();
   const { setIsLoading } = useLoader();
   const { openErrorAlert } = useAlert();
+  const { get, put } = useApi();
 
   const loadCards = () => {
     setIsLoading(true);
-    api.get(
+    get(
       'cards',
       (res) => {
         setCards(res.data);
         setIsLoading(false);
       },
       () => {
-        openErrorAlert('Failed to load cards');
+        openErrorAlert('Failed to load the cards');
         setIsLoading(false);
       }
     );
@@ -27,29 +28,29 @@ const useCardApi = () => {
 
   const loadCard = (cardId) => {
     setIsLoading(true);
-    api.get(
+    get(
       `cards/${cardId}`,
       (res) => {
         setCard(res.data);
         setIsLoading(false);
       },
       () => {
+        openErrorAlert('Failed to load the cards');
         setIsLoading(false);
-        openErrorAlert('Failed to load cards');
       }
     );
   };
 
   const updateCard = (card) => {
     setIsLoading(true);
-    api.put(
+    put(
       'cards',
       card,
       (res) => {
         setIsLoading(false);
       },
       () => {
-        openErrorAlert('Failed to update cards');
+        openErrorAlert('Failed to update the cards');
         setIsLoading(false);
       }
     );

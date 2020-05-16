@@ -3,7 +3,11 @@ import TextField from '@material-ui/core/TextField';
 import { Box } from '@material-ui/core';
 
 // TODO add props type
-export default function TodoMsgTodoEdit({ todoState, handleTodoNameChange }) {
+export default function TodoMsgTodoEdit({
+  todoState,
+  handleTodoNameChange,
+  switchRead,
+}) {
   return (
     <Box>
       <TextField
@@ -11,8 +15,15 @@ export default function TodoMsgTodoEdit({ todoState, handleTodoNameChange }) {
         variant="outlined"
         size="small"
         value={todoState.name}
-        style={{ width: '100%' }} // TODO
+        fullWidth
         onChange={(e) => handleTodoNameChange(e.target.value)}
+        onKeyPress={(e) => {
+          console.log(e.key);
+          if (e.key === 'Enter') {
+            switchRead();
+          }
+        }}
+        color={'secondary'}
       />
     </Box>
   );

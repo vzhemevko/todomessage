@@ -1,12 +1,12 @@
 package org.todomessage.services;
 
-import java.util.List;
-import java.util.UUID;
-
 import org.springframework.stereotype.Service;
 import org.todomessage.dtos.CardDto;
 import org.todomessage.mappers.CardMapper;
 import org.todomessage.repositories.CardRepository;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CardService {
@@ -24,9 +24,8 @@ public class CardService {
         return cardMapper.toCardDtoList(cardRepository.findAll());
     }
 
-    public CardDto getOne(String id) {
-        UUID uuid = UUID.fromString(id);
-        return cardMapper.toCardDto(cardRepository.findById(uuid).get());
+    public CardDto getOne(UUID id) {
+        return cardMapper.toCardDto(cardRepository.findById(id).get());
     }
 
     public CardDto updateOne(CardDto cardDto) {

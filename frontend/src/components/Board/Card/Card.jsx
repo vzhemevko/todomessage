@@ -1,9 +1,10 @@
 import React from 'react';
 
-import Paper from '@material-ui/core/Paper';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 import Grid from '@material-ui/core/Grid';
-import { Typography } from '@material-ui/core';
-import { Box } from '@material-ui/core';
 import TodoOne from './Todo/Todo';
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
@@ -31,41 +32,44 @@ export default function TodoMsgCard(props) {
 
   return (
     <div className={classes.root}>
-      <Paper className={classes.cardPaper} elevation={3}>
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          className={classes.cardTitle}
-        >
-          <Typography variant="h6">{props.card.day}</Typography>
-          &nbsp;
-          <Typography variant="caption">{props.card.day}</Typography>
-        </Box>
-        <Grid
-          container
-          direction="column"
-          alignItems="stretch"
-          justify="flex-start"
-          spacing={1}
-        >
-          {props.card.todos.map((t, index) => (
-            <Grid item key={index}>
-              <TodoOne card={props.card} todo={t} isNewTodo={false} />
+      <Card className={classes.card} elevation={3}>
+        <CardHeader
+          title={props.card.day}
+          subheader={props.card.day}
+          className={classes.cardHeader}
+          classes={{
+            title: classes.cardHeaderTitle,
+          }}
+        />
+        <div className={classes.cardContent}>
+          <CardContent>
+            <Grid
+              container
+              direction="column"
+              alignItems="stretch"
+              justify="flex-start"
+              spacing={1}
+            >
+              {props.card.todos.map((t, index) => (
+                <Grid item key={index}>
+                  <TodoOne card={props.card} todo={t} isNewTodo={false} />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-        <Box
-          display="flex"
-          alignItems="center"
-          justifyContent="flex-end"
-          className={classes.addBtn}
-        >
-          <IconButton aria-label="add todo" onClick={handleAddTodo}>
-            <AddIcon fontSize="large" />
-          </IconButton>
-        </Box>
-      </Paper>
+          </CardContent>
+        </div>
+        <div className={classes.cardActions}>
+          <CardActions disableSpacing>
+            <IconButton
+              aria-label="add todo"
+              onClick={handleAddTodo}
+              className={classes.cardActionsIcon}
+            >
+              <AddIcon fontSize="large" />
+            </IconButton>
+          </CardActions>
+        </div>
+      </Card>
     </div>
   );
 }

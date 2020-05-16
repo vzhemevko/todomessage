@@ -1,15 +1,11 @@
 package org.todomessage.controllers;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.todomessage.dtos.CardDto;
 import org.todomessage.services.CardService;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/cards")
@@ -27,7 +23,7 @@ public class CardController {
     }
 
     @GetMapping("/{id}")
-    public CardDto getOne(@PathVariable String id) {
+    public CardDto getOne(@PathVariable UUID id) {
         return cardService.getOne(id);
     }
 

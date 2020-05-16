@@ -4,23 +4,41 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  cardPaper: {
+  card: {
     maxWidth: 750,
     minWidth: 250,
     margin: `${theme.spacing(2)}px auto`,
     padding: theme.spacing(2),
-    background: theme.palette.primary.main,
   },
   todo: {
     width: '100%',
     marginLeft: 15,
   },
-  cardTitle: {
+  cardHeader: {
+    background: theme.palette.primary.main,
+    borderRadius: 5,
     color: theme.palette.secondary.main,
-    paddingBottom: theme.spacing(2),
+    paddingBottom: theme.spacing(1),
   },
-  addBtn: {
-    margin: 10,
+  cardHeaderTitle: {
+    color: theme.palette.secondary.main,
+  },
+  cardContent: {
+    //background: theme.palette.primary.main,
+    borderRadius: 5,
+  },
+  cardActions: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    background: theme.palette.secondary.main,
+    borderRadius: 5,
+  },
+  cardActionsIcon: {
+    color: theme.palette.primary.main,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.light,
+    },
   },
 }));
 

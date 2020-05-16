@@ -1,13 +1,22 @@
 import React from 'react';
+
 import Box from '@material-ui/core/Box';
-import CircularProgress from '@material-ui/core/CircularProgress';
+
+import classes from 'components/Loader/loaderStyle.module.css';
 import { useLoader } from 'hooks/common/useLoader';
 
 export default function TodoMsgLoader() {
   const { isLoading } = useLoader();
+
   return (
-    <Box position="fixed" top="50%" left="50%" zIndex={Number.MAX_SAFE_INTEGER}>
-      {isLoading && <CircularProgress />}
+    <Box className={classes.container} zIndex={Number.MAX_SAFE_INTEGER}>
+      {isLoading && (
+        <div className={classes.spinner}>
+          <div className={classes.bounce1} />
+          <div className={classes.bounce2} />
+          <div className={classes.bounce3} />
+        </div>
+      )}
     </Box>
   );
 }

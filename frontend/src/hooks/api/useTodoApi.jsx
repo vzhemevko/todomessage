@@ -5,7 +5,7 @@ import { useTodoState } from 'hooks/state/useTodoState';
 import { useCardState } from 'hooks/state/useCardState';
 import { useCardApi } from 'hooks/api/useCardApi';
 
-import api from 'services/api';
+import { useApi } from 'hooks/api/useApi';
 
 const useTodoApi = () => {
   const { setIsLoading } = useLoader();
@@ -13,10 +13,11 @@ const useTodoApi = () => {
   const { addTodo, setTodo, removeTodo } = useTodoState();
   const { getCard } = useCardState();
   const { updateCard } = useCardApi();
+  const { post, put, remove } = useApi();
 
   const createTodo = (todo) => {
     setIsLoading(true);
-    api.post(
+    post(
       'todos',
       todo,
       (res) => {
@@ -32,7 +33,7 @@ const useTodoApi = () => {
 
   const updateTodo = (todo) => {
     setIsLoading(true);
-    api.put(
+    put(
       'todos',
       todo,
       (res) => {
@@ -48,9 +49,8 @@ const useTodoApi = () => {
 
   const deleteTodo = (todo) => {
     setIsLoading(true);
-    api.remove(
-      'todos',
-      todo,
+    remove(
+      `todos/${todo.id}`,
       (res) => {
         removeTodo(todo);
         updateCard(getCard(todo.cardId));

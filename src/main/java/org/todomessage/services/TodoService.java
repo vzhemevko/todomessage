@@ -1,11 +1,12 @@
 package org.todomessage.services;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 import org.todomessage.dtos.TodoDto;
 import org.todomessage.mappers.TodoMapper;
 import org.todomessage.repositories.TodoRepository;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TodoService {
@@ -31,7 +32,7 @@ public class TodoService {
         return todoMapper.toTodoDto(todoRepository.save(todoMapper.toTodoEntity(todoDto)));
     }
 
-    public void deleteOne(TodoDto todoDto) {
-        todoRepository.delete(todoMapper.toTodoEntity(todoDto));
+    public void deleteOne(UUID id) {
+        todoRepository.deleteById(id);
     }
 }

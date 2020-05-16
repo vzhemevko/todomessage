@@ -1,18 +1,14 @@
 package org.todomessage.controllers;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.todomessage.dtos.TodoDto;
 import org.todomessage.mappers.TodoMapper;
 import org.todomessage.services.TodoService;
 
+import java.util.List;
+import java.util.UUID;
+
+@CrossOrigin
 @RestController
 @RequestMapping("/api/todos")
 public class TodoController {
@@ -39,9 +35,9 @@ public class TodoController {
         return todoService.updateOne(todoDto);
     }
 
-    @DeleteMapping
-    public void deleteOne(@RequestBody TodoDto todoDto) {
-        todoService.deleteOne(todoDto);
+    @DeleteMapping("/{id}")
+    public void deleteOne(@PathVariable UUID id) {
+        todoService.deleteOne(id);
     }
 }
 
