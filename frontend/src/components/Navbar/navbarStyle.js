@@ -62,12 +62,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
-  logoImg: {
-    padding: 0,
-    height: 70,
-    minHeight: 70,
-  },
   logo: {
+    marginLeft: 10,
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',

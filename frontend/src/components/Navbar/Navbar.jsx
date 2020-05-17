@@ -20,6 +20,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import { Box } from '@material-ui/core';
+import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 
 import useStyles from 'components/Navbar/navbarStyle';
 import Board from 'components/Board/Board';
@@ -57,9 +58,10 @@ export default function TodoMsgNavbar() {
           >
             <MenuIcon />
           </IconButton>
+          <NotificationsNoneIcon fontSize="large" />
           <Box className={classes.logo}>
             <Typography variant="h5" noWrap>
-              Todo Message
+              Todomessage
             </Typography>
             <Typography variant="caption" noWrap>
               &nbsp; receive messages about things you need to do

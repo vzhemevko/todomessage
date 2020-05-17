@@ -4,7 +4,7 @@ const AppStateContext = React.createContext({});
 
 const AppStateProvider = ({ children }) => {
   const [board, setBoard] = React.useState({});
-  const [boardLoggedIn, setBoardLoggedIn] = React.useState({});
+  const [boardLoggedIn, setBoardLoggedIn] = React.useState(false);
   const [cards, setCards] = React.useState([]);
 
   return (
