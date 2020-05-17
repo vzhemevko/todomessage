@@ -1,18 +1,10 @@
 package org.todomessage.entities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.*;
 
-import static java.util.Objects.*;
+import static java.util.Objects.nonNull;
+import static org.springframework.util.StringUtils.isEmpty;
 
 @Entity
 public class Board {
@@ -23,9 +15,9 @@ public class Board {
 
     private String name;
 
+    @Column(updatable= false)
     private String key;
 
-    @Column(name = "time_zone")
     private String timeZone;
 
     private String emails;
@@ -58,7 +50,7 @@ public class Board {
     }
 
     public List<String> getEmails() {
-        return nonNull(emails) ? Arrays.asList(emails.split("\\s*,\\s*")) : new ArrayList<>();
+        return !isEmpty(emails) ? Arrays.asList(emails.split("\\s*,\\s*")) : new ArrayList<>();
     }
 
     public void setEmails(List<String> emails) {

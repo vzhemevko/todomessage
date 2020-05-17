@@ -17,9 +17,14 @@ const validateEmail = (email) => {
 
 export default function TodoMsgBoard() {
   const classes = useStyles();
-  const [emails, setEmails] = React.useState(['foo', 'boo']);
+  const { cards, board, updateBoard } = useApp();
   const [emailsValid, setEmailsValid] = React.useState(false);
-  const { cards } = useApp();
+  const [emails, setEmails] = React.useState([]);
+
+  React.useEffect(() => {
+    if (!board.emails) return;
+    setEmails(board.emails);
+  }, [board]);
 
   React.useEffect(() => {
     let notValidEmails = emails.filter((e) => {
@@ -29,13 +34,18 @@ export default function TodoMsgBoard() {
   }, [emails]);
 
   const handleEmailAdd = (email) => {
-    setEmails([...emails, email]);
+    const emailsToUpdate = [...emails, email];
+    const boardToUpdate = { ...board, emails: emailsToUpdate };
+    setEmails(emailsToUpdate);
+    updateBoard(boardToUpdate);
   };
 
   const handleEmailDelete = (email, index) => {
-    let array = [...emails];
-    array.splice(index, 1);
-    setEmails(array);
+    let emailsToUpdate = [...emails];
+    emailsToUpdate.splice(index, 1);
+    const boardToUpdate = { ...board, emails: emailsToUpdate };
+    setEmails(emailsToUpdate);
+    updateBoard(boardToUpdate);
   };
 
   return (
@@ -49,15 +59,20 @@ export default function TodoMsgBoard() {
         <Box className={classes.emailSubHeader}>
           {!emailsValid ? (
             <Typography variant="caption" className={classes.emailsNotValid}>
-              &nbsp;please note some of the addresses is not a valid email
-              address, correct them to receive the messages
+              Please note some of the addresses is not a valid email address,
+              correct them to receive the messages
+            </Typography>
+          ) : null}
+          {emails.length < 1 ? (
+            <Typography variant="caption" color="textSecondary">
+              You don't have any email addresses, add them to receive the
+              messages
             </Typography>
           ) : null}
         </Box>
         <Box className={classes.emailInput}>
           <ChipInput
             value={emails}
-            //onChange={handleEmailChange}
             onAdd={handleEmailAdd}
             onDelete={(email, index) => handleEmailDelete(email, index)}
             fullWidth

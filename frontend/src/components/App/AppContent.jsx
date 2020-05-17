@@ -8,7 +8,7 @@ import Login from 'components/Login/Login';
 import { useApp } from 'hooks/useApp';
 
 export default function TodoMsgAppContent() {
-  const { loadBoard, getBoardNameLocalStorage } = useApp();
+  const { boardLoggedIn, loadBoard } = useApp();
 
   React.useEffect(() => {
     loadBoard();
@@ -16,7 +16,7 @@ export default function TodoMsgAppContent() {
 
   return (
     <div>
-      <div>{getBoardNameLocalStorage() ? <Navbar /> : <Login />}</div>
+      <div>{boardLoggedIn ? <Navbar /> : <Login />}</div>
       <Loader />
       <Alert />
     </div>

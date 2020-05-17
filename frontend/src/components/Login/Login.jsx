@@ -20,7 +20,7 @@ export default function TodoMsgLogin() {
 
   const signInBoard = (event) => {
     event.preventDefault();
-    loginBoard({ boardName: boardName, boardKey: boardKey });
+    loginBoard(boardName, boardKey);
   };
 
   return (

@@ -1,9 +1,6 @@
 package org.todomessage.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.todomessage.dtos.BoardDto;
 import org.todomessage.services.BoardService;
 
@@ -27,5 +24,10 @@ public class BoardController {
     @GetMapping("/{name}")
     public BoardDto getByName(@PathVariable String name) {
         return boardService.getByName(name);
+    }
+
+    @PutMapping
+    public BoardDto updateOne(@RequestBody BoardDto boardDto) {
+        return boardService.updateOne(boardDto);
     }
 }

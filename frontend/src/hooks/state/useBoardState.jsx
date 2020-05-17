@@ -1,9 +1,12 @@
-import { useContext } from 'react';
+import React from 'react';
+
 import { AppStateContext } from 'contexts/AppContext';
 import { useCardState } from 'hooks/state/useCardState';
 
 const useBoardState = () => {
-  const { board, setBoard } = useContext(AppStateContext);
+  const { board, setBoard, boardLoggedIn, setBoardLoggedIn } = React.useContext(
+    AppStateContext
+  );
   const { setCards } = useCardState();
 
   const setBoardLoaded = (boardToSet) => {
@@ -11,6 +14,12 @@ const useBoardState = () => {
     window.localStorage.setItem('TDMSGBDN', boardToSet.name);
     setBoard(boardToSet);
     setCards(boardToSet.cards);
+    setBoardLoggedIn(true);
+  };
+
+  const clearBoardNameLocalStorage = () => {
+    window.localStorage.removeItem('TDMSGBDN');
+    setBoardLoggedIn(false);
   };
 
   const getBoardNameLocalStorage = () => {
@@ -18,12 +27,9 @@ const useBoardState = () => {
     return boardNameLocalStorage ? boardNameLocalStorage : '';
   };
 
-  const clearBoardNameLocalStorage = () => {
-    window.localStorage.removeItem('TDMSGBDN');
-  };
-
   return {
     board,
+    boardLoggedIn,
     setBoard,
     setBoardLoaded,
     getBoardNameLocalStorage,

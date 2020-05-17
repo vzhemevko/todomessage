@@ -1,15 +1,7 @@
 import { useCardState } from 'hooks/state/useCardState';
 
 const useTodoState = () => {
-  const { cards, setCards } = useCardState();
-
-  const setCard = (card) => {
-    setCards(cards.map((c) => (c.id === card.id ? card : c)));
-  };
-
-  const getCard = (cardId) => {
-    return cards.filter((c) => c.id === cardId)[0];
-  };
+  const { getCard, setCard } = useCardState();
 
   const addTodo = (todo) => {
     let card = getCard(todo.cardId);
@@ -30,7 +22,7 @@ const useTodoState = () => {
     card.todos.forEach((t, index) => {
       t.position = index;
     });
-    setCard(card);
+    return card;
   };
 
   return {

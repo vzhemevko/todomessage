@@ -28,4 +28,8 @@ public class BoardService {
     public BoardDto getByName(String name) {
         return boardMapper.toBoardDto(boardRepository.findByName(name));
     }
+
+    public BoardDto updateOne(BoardDto boardDto) {
+        return boardMapper.toBoardDto(boardRepository.save(boardMapper.toBoardEntity(boardDto)));
+    }
 }

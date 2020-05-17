@@ -1,13 +1,23 @@
-import React, { useState, createContext } from 'react';
+import React from 'react';
 
-const AppStateContext = createContext({});
+const AppStateContext = React.createContext({});
 
 const AppStateProvider = ({ children }) => {
-  const [board, setBoard] = useState({});
-  const [cards, setCards] = useState([]);
+  const [board, setBoard] = React.useState({});
+  const [boardLoggedIn, setBoardLoggedIn] = React.useState({});
+  const [cards, setCards] = React.useState([]);
 
   return (
-    <AppStateContext.Provider value={{ board, setBoard, cards, setCards }}>
+    <AppStateContext.Provider
+      value={{
+        board,
+        setBoard,
+        boardLoggedIn,
+        setBoardLoggedIn,
+        cards,
+        setCards,
+      }}
+    >
       {children}
     </AppStateContext.Provider>
   );
