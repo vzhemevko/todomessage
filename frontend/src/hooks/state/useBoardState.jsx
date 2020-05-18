@@ -26,7 +26,6 @@ const useBoardState = () => {
     setIsBoardLoaded(true);
     setIsBoardInit(true);
     setAppTheme(themes[boardToSet.theme]);
-    console.log(boardToSet);
   };
 
   const clearBoardNameLocalStorage = () => {

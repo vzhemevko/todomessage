@@ -26,6 +26,11 @@ public class BoardController {
         return boardService.getByName(name);
     }
 
+    @PostMapping
+    public BoardDto createOne(@RequestBody BoardDto boardDto) {
+        return boardService.createOne(boardDto);
+    }
+
     @PutMapping
     public BoardDto updateOne(@RequestBody BoardDto boardDto) {
         return boardService.updateOne(boardDto);

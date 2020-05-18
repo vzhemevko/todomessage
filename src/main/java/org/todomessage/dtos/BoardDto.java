@@ -9,6 +9,8 @@ public class BoardDto {
 
     private String name;
 
+    private String key;
+
     private String timeZone;
 
     private List<String> emails;
@@ -31,6 +33,14 @@ public class BoardDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public String getTimeZone() {

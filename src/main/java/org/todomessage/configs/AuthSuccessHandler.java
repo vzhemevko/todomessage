@@ -29,7 +29,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        out.print(objectMapper.writeValueAsString(boardService.getByName("Default Board"/*authentication.getName()*/)));
+        out.print(objectMapper.writeValueAsString(boardService.getByName(authentication.getName())));
         out.flush();
     }
 }

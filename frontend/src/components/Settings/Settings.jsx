@@ -37,7 +37,6 @@ export default function TodoMsgSettings() {
             label="Time Zone"
             variant="outlined"
             fullWidth
-            color={'secondary'}
           />
         )}
       />
@@ -55,13 +54,7 @@ export default function TodoMsgSettings() {
           setAppTheme(newValue);
         }}
         renderInput={(params) => (
-          <TextField
-            {...params}
-            label="Theme"
-            variant="outlined"
-            fullWidth
-            color={'secondary'}
-          />
+          <TextField {...params} label="Theme" variant="outlined" fullWidth />
         )}
       />
     );
@@ -98,7 +91,6 @@ export default function TodoMsgSettings() {
                 fullWidth
                 value={boardName}
                 onChange={(e) => setBoardName(e.target.value)}
-                color={'secondary'}
               />
             </Box>
           </Box>

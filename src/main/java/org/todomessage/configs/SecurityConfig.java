@@ -9,17 +9,19 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.todomessage.services.BoardDetailsService;
+
+import static org.springframework.http.HttpMethod.POST;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private BoardDetailsService boardDetailsService;
 
     @Autowired
     private AuthSuccessHandler authSuccessHandler;
@@ -27,24 +29,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthFailureHandler authFailureHandler;
 
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    };
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .passwordEncoder(passwordEncoder)
-                .withUser("user").password(passwordEncoder.encode("art")).roles("USER");
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        auth.userDetailsService(boardDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .cors().and()
-            .authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll()
+            .cors()
+        .and()
+            .authorizeRequests()
+            .antMatchers(POST, "/api/boards").permitAll() // registration
             .antMatchers("/api/**").authenticated()
+            .antMatchers(HttpMethod.OPTIONS).permitAll()
             .anyRequest().permitAll() // TODO
         .and()
             .formLogin()

@@ -14,7 +14,7 @@ const useBoardApi = () => {
     clearBoardNameLocalStorage,
   } = useBoardState();
   const { openSuccessAlert, openErrorAlert } = useAlert();
-  const { get, put, login, logout } = useApi();
+  const { get, post, put, login, logout } = useApi();
   const { setIsLoading } = useLoader();
 
   const loginBoard = (boardName, boardKey) => {
@@ -65,9 +65,23 @@ const useBoardApi = () => {
     );
   };
 
+  const createBoard = (boardToCreate, successMsg, errorMsg) => {
+    post(
+      'boards',
+      boardToCreate,
+      () => {
+        setBoardLoaded(boardToCreate);
+        openSuccessAlert(successMsg);
+      },
+      () => {
+        openErrorAlert(errorMsg ? errorMsg : 'Failed to create the board');
+      }
+    );
+  };
+
   const updateBoard = (boardToUpdate, successMsg, errorMsg) => {
     const boardPrev = board;
-    setBoard(boardToUpdate);
+    setBoardLoaded(boardToUpdate);
     put(
       'boards',
       boardToUpdate,
@@ -75,7 +89,7 @@ const useBoardApi = () => {
         openSuccessAlert(successMsg);
       },
       () => {
-        setBoard(boardPrev);
+        setBoardLoaded(boardPrev);
         openErrorAlert(errorMsg ? errorMsg : 'Failed to update the board');
       }
     );
@@ -86,6 +100,7 @@ const useBoardApi = () => {
     logoutBoard,
     initBoard,
     loadBoard,
+    createBoard,
     updateBoard,
   };
 };

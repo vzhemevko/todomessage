@@ -16,15 +16,55 @@ import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import useStyles from 'components/Login/loginStyle';
 import { useApp } from 'hooks/useApp';
 
+let inputKeeper = {
+  createBoard: false,
+  boardName: '',
+  boardKey: '',
+  confirmBoardKey: '',
+};
+
 export default function TodoMsgLogin() {
   const classes = useStyles();
-  const [boardName, setBoardName] = React.useState('');
-  const [boardKey, setBoardKey] = React.useState('');
-  const { loginBoard } = useApp();
+  const [isCreateBoard, setIsCreateBoard] = React.useState(
+    inputKeeper.createBoard
+  );
+  const [boardName, setBoardName] = React.useState(inputKeeper.boardName);
+  const [boardKey, setBoardKey] = React.useState(inputKeeper.boardKey);
+  const [confirmBoardKey, setConfirmBoardKey] = React.useState(
+    inputKeeper.confirmBoardKey
+  );
+  const { createBoard, loginBoard, openWarningAlert, appTheme } = useApp();
 
-  const signInBoard = (event) => {
+  const submitBoard = (event) => {
     event.preventDefault();
-    loginBoard(boardName, boardKey);
+    inputKeeper = {
+      createBoard: isCreateBoard,
+      boardName: boardName,
+      boardKey: boardKey,
+      confirmBoardKey: confirmBoardKey,
+    };
+
+    if (isCreateBoard) {
+      handleCreateBoard();
+    } else {
+      loginBoard(boardName, boardKey);
+    }
+  };
+
+  const handleCreateBoard = () => {
+    if (boardKey !== confirmBoardKey) {
+      openWarningAlert("Keys don't match");
+      return;
+    }
+    createBoard({
+      id: '',
+      name: boardName,
+      key: boardKey,
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      emails: [],
+      theme: appTheme.index,
+      cards: [],
+    });
   };
 
   return (
@@ -45,9 +85,9 @@ export default function TodoMsgLogin() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="subtitle1">
-            Sign in
+            {isCreateBoard ? 'Create Board' : 'Sign in'}
           </Typography>
-          <form className={classes.form} onSubmit={signInBoard}>
+          <form className={classes.form} onSubmit={submitBoard}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -66,13 +106,28 @@ export default function TodoMsgLogin() {
               required
               fullWidth
               name="boarKey"
+              id="boarKey"
               label="Board Key"
               type="password"
-              id="boarKey"
               autoComplete="current-password"
               value={boardKey}
               onChange={(event) => setBoardKey(event.target.value)}
             />
+            {isCreateBoard ? (
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="confirmBoardKey"
+                label="Confirm Board Key"
+                type="password"
+                name="confirmBoardKey"
+                autoComplete="current-password"
+                value={confirmBoardKey}
+                onChange={(event) => setConfirmBoardKey(event.target.value)}
+              />
+            ) : null}
             <Button
               type="submit"
               fullWidth
@@ -80,12 +135,18 @@ export default function TodoMsgLogin() {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              {isCreateBoard ? 'Create' : 'Sign In'}
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have a board? Create one"}
+                <Link
+                  href="#"
+                  variant="body2"
+                  onClick={() => setIsCreateBoard(!isCreateBoard)}
+                >
+                  {isCreateBoard
+                    ? 'Already have a board? Sign In'
+                    : "Don't have a board? Create one"}
                 </Link>
               </Grid>
             </Grid>

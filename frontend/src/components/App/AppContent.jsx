@@ -10,7 +10,7 @@ import Login from 'components/Login/Login';
 import { useApp } from 'hooks/useApp';
 
 export default function TodoMsgAppContent() {
-  const { board, initBoard, isBoardInit, isBoardLoaded, appTheme } = useApp();
+  const { initBoard, isBoardInit, isBoardLoaded, appTheme } = useApp();
 
   React.useEffect(() => {
     initBoard();
