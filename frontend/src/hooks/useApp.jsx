@@ -6,6 +6,7 @@ import { useBoardApi } from 'hooks/api/useBoardApi';
 import { useCardApi } from 'hooks/api/useCardApi';
 import { useTodoApi } from 'hooks/api/useTodoApi';
 
+import { useTheme } from 'hooks/common/useTheme';
 import { useLoader } from 'hooks/common/useLoader';
 import { useAlert } from 'hooks/common/useAlert';
 
@@ -17,6 +18,7 @@ const useApp = () => {
     ...useBoardApi(),
     ...useCardApi(),
     ...useTodoApi(),
+    ...useTheme(),
     ...useLoader(),
     ...useAlert(),
   };

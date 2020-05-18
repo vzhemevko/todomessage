@@ -22,6 +22,8 @@ public class Board {
 
     private String emails;
 
+    private Short theme;
+
     @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
     private Set<Card> cards;
 
@@ -49,6 +51,14 @@ public class Board {
         this.key = key;
     }
 
+    public String getTimeZone() {
+        return timeZone;
+    }
+
+    public void setTimeZone(String timeZone) {
+        this.timeZone = timeZone;
+    }
+
     public List<String> getEmails() {
         return !isEmpty(emails) ? Arrays.asList(emails.split("\\s*,\\s*")) : new ArrayList<>();
     }
@@ -57,12 +67,16 @@ public class Board {
         this.emails = nonNull(emails) ? String.join(",", emails) : "";
     }
 
-    public String getTimeZone() {
-        return timeZone;
+    public void setEmails(String emails) {
+        this.emails = emails;
     }
 
-    public void setTimeZone(String timeZone) {
-        this.timeZone = timeZone;
+    public Short getTheme() {
+        return theme;
+    }
+
+    public void setTheme(Short theme) {
+        this.theme = theme;
     }
 
     public Set<Card> getCards() {

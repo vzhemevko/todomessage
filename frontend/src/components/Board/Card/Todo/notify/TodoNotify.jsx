@@ -1,26 +1,24 @@
 import React from 'react';
 
-import { Typography } from '@material-ui/core';
-import { Box } from '@material-ui/core';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import {
+  Typography,
+  Box,
+  MenuItem,
+  FormControl,
+  Select,
+} from '@material-ui/core';
+
 import {
   KeyboardTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
-import { ThemeProvider } from '@material-ui/core/styles';
 
 import DateFnsUtils from '@date-io/date-fns';
 import 'date-fns';
 import { format } from 'date-fns';
 
-import {
-  useStyles,
-  customTheme,
-} from 'components/Board/Card/Todo/Notify/todoNotifyStyle';
+import { useStyles } from 'components/Board/Card/Todo/Notify/todoNotifyStyle';
 
-// TODO add props type
 export default function TodoMsgTodoNotify({
   todoState,
   day,
@@ -51,18 +49,16 @@ export default function TodoMsgTodoNotify({
         </FormControl>
       </Box>
       <Box m={1}>
-        <ThemeProvider theme={customTheme}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardTimePicker
-              ampm={false}
-              value={`${day}T${todoState.dueTime}`}
-              onChange={(time) =>
-                handleTodoDueTimeChange(format(time, 'hh:mm:ss'))
-              }
-              className={classes.formControl}
-            />
-          </MuiPickersUtilsProvider>
-        </ThemeProvider>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardTimePicker
+            ampm={false}
+            value={`${day}T${todoState.dueTime}`}
+            onChange={(time) =>
+              handleTodoDueTimeChange(format(time, 'hh:mm:ss'))
+            }
+            className={classes.formControl}
+          />
+        </MuiPickersUtilsProvider>
       </Box>
     </Box>
   );

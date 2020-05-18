@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { Box, IconButton, Typography } from '@material-ui/core';
+import { Box, IconButton, Typography, Paper } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Card from 'components/Board/Card/Card';
 import ChipInput from 'material-ui-chip-input';
-import Paper from '@material-ui/core/Paper';
 
 import { useApp } from 'hooks/useApp';
 import useStyles from 'components/Board/boardStyle';

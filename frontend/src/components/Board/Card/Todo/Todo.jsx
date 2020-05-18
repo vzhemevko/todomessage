@@ -1,20 +1,17 @@
 import React from 'react';
 
-import Paper from '@material-ui/core/Paper';
-import IconButton from '@material-ui/core/IconButton';
+import { Box, IconButton, Paper } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import CheckIcon from '@material-ui/icons/Check';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
-import { Box } from '@material-ui/core';
+
+import useStyles from 'components/Board/Card/Todo/todoStyle';
 import TodoEditOne from 'components/Board/Card/Todo/Edit/TodoEdit';
 import TodoNotifyOne from 'components/Board/Card/Todo/Notify/TodoNotify';
 import TodoReadOne from 'components/Board/Card/Todo/Read/TodoRead';
-
 import { useApp } from 'hooks/useApp';
-import useStyles from 'components/Board/Card/Todo/todoStyle';
 
-// TODO add props type
 export default function TodoMsgTodo(props) {
   const classes = useStyles();
   const [todoElevation, setTodoElevation] = React.useState(1);

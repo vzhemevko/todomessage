@@ -1,8 +1,9 @@
-import { useContext } from 'react';
-import { LoaderContext } from 'contexts/LoaderContext';
+import React from 'react';
+
+import { AppStateContext } from 'contexts/AppContext';
 
 const useLoader = () => {
-  const [isLoading, setIsLoading] = useContext(LoaderContext);
+  const { isLoading, setIsLoading } = React.useContext(AppStateContext);
 
   return { isLoading, setIsLoading };
 };

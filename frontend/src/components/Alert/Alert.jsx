@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Snackbar from '@material-ui/core/Snackbar';
-import Slide from '@material-ui/core/Slide';
+import { Snackbar, Slide } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 
 import { useApp } from 'hooks/useApp';
@@ -37,6 +36,7 @@ export default function TodoMsgAlert({ elevation }) {
   );
 }
 
+// Consider to addd prop types to all components
 TodoMsgAlert.propTypes = {
   elevation: PropTypes.number,
 };

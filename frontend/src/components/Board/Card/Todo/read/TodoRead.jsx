@@ -1,11 +1,9 @@
 import React from 'react';
 
-import { Typography } from '@material-ui/core';
-import { Box } from '@material-ui/core';
+import { Typography, Box } from '@material-ui/core';
 
 import useStyles from 'components/Board/Card/Todo/Read/todoReadStyle';
 
-// TODO add props type
 export default function TodoMsgTodoRead({ todoState }) {
   const classes = useStyles();
   return (

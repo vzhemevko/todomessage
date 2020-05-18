@@ -1,18 +1,19 @@
 import React from 'react';
 
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Grid from '@material-ui/core/Grid';
-import TodoOne from './Todo/Todo';
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardActions,
+  Grid,
+  IconButton,
+} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import IconButton from '@material-ui/core/IconButton';
 
+import TodoOne from 'components/Board/Card/Todo/Todo';
 import { useApp } from 'hooks/useApp';
-import useStyles from './cardStyle';
+import useStyles from 'components/Board/Card/cardStyle';
 
-// TODO add props type
 export default function TodoMsgCard(props) {
   const classes = useStyles();
   const { createTodo } = useApp();

@@ -1,6 +1,6 @@
 import { useBoardState } from 'hooks/state/useBoardState';
-
 import { useAlert } from 'hooks/common/useAlert';
+import { useLoader } from 'hooks/common/useLoader';
 
 import { useApi } from 'hooks/api/useApi';
 
@@ -8,12 +8,14 @@ const useBoardApi = () => {
   const {
     board,
     setBoard,
+    setIsBoardInit,
     setBoardLoaded,
     getBoardNameLocalStorage,
     clearBoardNameLocalStorage,
   } = useBoardState();
-  const { openErrorAlert } = useAlert();
+  const { openSuccessAlert, openErrorAlert } = useAlert();
   const { get, put, login, logout } = useApi();
+  const { setIsLoading } = useLoader();
 
   const loginBoard = (boardName, boardKey) => {
     login(
@@ -40,8 +42,17 @@ const useBoardApi = () => {
     );
   };
 
+  const initBoard = () => {
+    setIsLoading(true);
+    if (!getBoardNameLocalStorage()) {
+      setIsBoardInit(true);
+      setIsLoading(false);
+      return;
+    }
+    loadBoard();
+  };
+
   const loadBoard = () => {
-    if (!getBoardNameLocalStorage()) return;
     get(
       `boards/${getBoardNameLocalStorage()}`,
       (res) => {
@@ -54,16 +65,18 @@ const useBoardApi = () => {
     );
   };
 
-  const updateBoard = (boardToUpdate) => {
+  const updateBoard = (boardToUpdate, successMsg, errorMsg) => {
     const boardPrev = board;
     setBoard(boardToUpdate);
     put(
       'boards',
       boardToUpdate,
-      () => {},
+      () => {
+        openSuccessAlert(successMsg);
+      },
       () => {
         setBoard(boardPrev);
-        openErrorAlert('Failed to update the board');
+        openErrorAlert(errorMsg ? errorMsg : 'Failed to update the board');
       }
     );
   };
@@ -71,6 +84,7 @@ const useBoardApi = () => {
   return {
     loginBoard,
     logoutBoard,
+    initBoard,
     loadBoard,
     updateBoard,
   };

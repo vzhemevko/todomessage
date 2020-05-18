@@ -1,8 +1,7 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
-import { Box } from '@material-ui/core';
 
-// TODO add props type
+import { Box, TextField } from '@material-ui/core';
+
 export default function TodoMsgTodoEdit({
   todoState,
   handleTodoNameChange,

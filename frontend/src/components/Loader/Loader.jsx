@@ -3,10 +3,10 @@ import React from 'react';
 import Box from '@material-ui/core/Box';
 
 import classes from 'components/Loader/loaderStyle.module.css';
-import { useLoader } from 'hooks/common/useLoader';
+import { useApp } from 'hooks/useApp';
 
 export default function TodoMsgLoader() {
-  const { isLoading } = useLoader();
+  const { isLoading } = useApp();
 
   return (
     <Box className={classes.container} zIndex={Number.MAX_SAFE_INTEGER}>

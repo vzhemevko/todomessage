@@ -1,9 +1,7 @@
-import { useAlert } from 'hooks/common/useAlert';
-
 import { useTodoState } from 'hooks/state/useTodoState';
 import { useCardApi } from 'hooks/api/useCardApi';
-
 import { useApi } from 'hooks/api/useApi';
+import { useAlert } from 'hooks/common/useAlert';
 
 const useTodoApi = () => {
   const { openErrorAlert } = useAlert();

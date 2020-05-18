@@ -1,14 +1,16 @@
 import React from 'react';
 
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import {
+  Button,
+  Box,
+  TextField,
+  Link,
+  Paper,
+  Grid,
+  Typography,
+  Avatar,
+} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 
 import useStyles from 'components/Login/loginStyle';

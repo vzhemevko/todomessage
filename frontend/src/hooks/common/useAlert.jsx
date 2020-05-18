@@ -1,10 +1,16 @@
-import { useContext } from 'react';
-import { AlertContext } from 'contexts/AlertContext';
+import React from 'react';
+
+import { AppStateContext } from 'contexts/AppContext';
 
 const useAlert = () => {
-  const { message, setMessage } = useContext(AlertContext);
-  const { type, setType } = useContext(AlertContext);
-  const { open, setOpen } = useContext(AlertContext);
+  const {
+    message,
+    setMessage,
+    type,
+    setType,
+    open,
+    setOpen,
+  } = React.useContext(AppStateContext);
 
   const showAlert = (type, message) => {
     setType(type);
@@ -17,18 +23,22 @@ const useAlert = () => {
   };
 
   const openErrorAlert = (message) => {
+    if (!message) return;
     showAlert('error', message);
   };
 
   const openWarningAlert = (message) => {
+    if (!message) return;
     showAlert('warning', message);
   };
 
   const openSuccessAlert = (message) => {
+    if (!message) return;
     showAlert('success', message);
   };
 
   const openInfoAlert = (message) => {
+    if (!message) return;
     showAlert('info', message);
   };
 

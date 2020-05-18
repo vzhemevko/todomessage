@@ -1,29 +1,32 @@
 import React from 'react';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
-import clsx from 'clsx';
-import { useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
+import {
+  AppBar,
+  Toolbar,
+  Drawer,
+  List,
+  Box,
+  Typography,
+  Divider,
+  IconButton,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import SettingsIcon from '@material-ui/icons/Settings';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import { Box } from '@material-ui/core';
+import clsx from 'clsx';
+import { useTheme } from '@material-ui/core/styles';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 
 import useStyles from 'components/Navbar/navbarStyle';
 import Board from 'components/Board/Board';
+import Settings from 'components/Settings/Settings';
 import { useApp } from 'hooks/useApp';
 
 export default function TodoMsgNavbar() {
@@ -132,7 +135,7 @@ export default function TodoMsgNavbar() {
             <Board />
           </Route>
           <Route exact path="/settings">
-            <Typography paragraph>Settings</Typography>
+            <Settings />
           </Route>
         </main>
       </div>

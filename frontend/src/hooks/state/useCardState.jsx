@@ -1,8 +1,9 @@
-import { useContext } from 'react';
+import React from 'react';
+
 import { AppStateContext } from 'contexts/AppContext';
 
 const useCardState = () => {
-  const { cards, setCards } = useContext(AppStateContext);
+  const { cards, setCards } = React.useContext(AppStateContext);
 
   const setCard = (card) => {
     setCards(cards.map((c) => (c.id === card.id ? card : c)));
