@@ -4,14 +4,27 @@ import themes from 'themes';
 
 const AppStateContext = React.createContext({});
 
+const emptyLoginInputsKeeper = {
+  isCreateBoard: false,
+  boardName: '',
+  boardKey: '',
+  confirmBoardKey: '',
+};
+
+const defaultAppTheme = themes[1];
+
 const AppStateProvider = ({ children }) => {
+  const [loginInputsKeeper, setLoginInputsKeeper] = React.useState(
+    emptyLoginInputsKeeper
+  );
+
   const [board, setBoard] = React.useState(false);
   const [isBoardInit, setIsBoardInit] = React.useState(false);
   const [isBoardLoaded, setIsBoardLoaded] = React.useState(false);
 
   const [cards, setCards] = React.useState([]);
 
-  const [appTheme, setAppTheme] = React.useState(themes[1]);
+  const [appTheme, setAppTheme] = React.useState(defaultAppTheme);
 
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -22,6 +35,10 @@ const AppStateProvider = ({ children }) => {
   return (
     <AppStateContext.Provider
       value={{
+        loginInputsKeeper,
+        setLoginInputsKeeper,
+        emptyLoginInputsKeeper,
+
         board,
         setBoard,
         isBoardInit,
@@ -32,6 +49,7 @@ const AppStateProvider = ({ children }) => {
         cards,
         setCards,
 
+        defaultAppTheme,
         appTheme,
         setAppTheme,
 

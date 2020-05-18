@@ -4,9 +4,11 @@ import { AppStateContext } from 'contexts/AppContext';
 import themes from 'themes';
 
 const useTheme = () => {
-  const { appTheme, setAppTheme } = React.useContext(AppStateContext);
+  const { defaultAppTheme, appTheme, setAppTheme } = React.useContext(
+    AppStateContext
+  );
 
-  return { themes, appTheme, setAppTheme };
+  return { themes, defaultAppTheme, appTheme, setAppTheme };
 };
 
 export { useTheme };

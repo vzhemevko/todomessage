@@ -8,7 +8,7 @@ const API_BASE = `${SERVER_BASE}/api/`;
 
 const useApi = () => {
   const { setIsLoading } = useLoader();
-  const { clearBoardNameLocalStorage } = useBoardState();
+  const { clearBoardLoaded } = useBoardState();
 
   axios.interceptors.request.use((config) => {
     config.withCredentials = true;
@@ -24,7 +24,7 @@ const useApi = () => {
     (error) => {
       setIsLoading(false);
       if (error.response?.status === 401) {
-        clearBoardNameLocalStorage();
+        clearBoardLoaded();
       }
       return Promise.reject(error);
     }

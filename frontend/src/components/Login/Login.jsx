@@ -16,33 +16,34 @@ import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import useStyles from 'components/Login/loginStyle';
 import { useApp } from 'hooks/useApp';
 
-let inputKeeper = {
-  createBoard: false,
-  boardName: '',
-  boardKey: '',
-  confirmBoardKey: '',
-};
-
 export default function TodoMsgLogin() {
   const classes = useStyles();
+  const {
+    loginInputsKeeper,
+    setLoginInputsKeeper,
+    createBoard,
+    loginBoard,
+    openWarningAlert,
+    appTheme,
+  } = useApp();
+
   const [isCreateBoard, setIsCreateBoard] = React.useState(
-    inputKeeper.createBoard
+    loginInputsKeeper.isCreateBoard
   );
-  const [boardName, setBoardName] = React.useState(inputKeeper.boardName);
-  const [boardKey, setBoardKey] = React.useState(inputKeeper.boardKey);
+  const [boardName, setBoardName] = React.useState(loginInputsKeeper.boardName);
+  const [boardKey, setBoardKey] = React.useState(loginInputsKeeper.boardKey);
   const [confirmBoardKey, setConfirmBoardKey] = React.useState(
-    inputKeeper.confirmBoardKey
+    loginInputsKeeper.confirmBoardKey
   );
-  const { createBoard, loginBoard, openWarningAlert, appTheme } = useApp();
 
   const submitBoard = (event) => {
     event.preventDefault();
-    inputKeeper = {
-      createBoard: isCreateBoard,
+    setLoginInputsKeeper({
+      isCreateBoard: isCreateBoard,
       boardName: boardName,
       boardKey: boardKey,
       confirmBoardKey: confirmBoardKey,
-    };
+    });
 
     if (isCreateBoard) {
       handleCreateBoard();
@@ -58,7 +59,7 @@ export default function TodoMsgLogin() {
     }
     createBoard({
       id: '',
-      name: boardName,
+      name: boardName.trim(),
       key: boardKey,
       timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       emails: [],
@@ -96,7 +97,6 @@ export default function TodoMsgLogin() {
               id="boardName"
               label="Board Name"
               name="boardName"
-              autoFocus
               value={boardName}
               onChange={(event) => setBoardName(event.target.value)}
             />

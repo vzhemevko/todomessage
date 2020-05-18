@@ -8,6 +8,9 @@ const BOARD_NAME_KEY = 'TDMSGBDN';
 
 const useBoardState = () => {
   const {
+    emptyLoginInputsKeeper,
+    loginInputsKeeper,
+    setLoginInputsKeeper,
     board,
     setBoard,
     isBoardInit,
@@ -15,6 +18,7 @@ const useBoardState = () => {
     isBoardLoaded,
     setIsBoardLoaded,
     setAppTheme,
+    defaultAppTheme,
   } = React.useContext(AppStateContext);
   const { setCards } = useCardState();
 
@@ -28,10 +32,12 @@ const useBoardState = () => {
     setAppTheme(themes[boardToSet.theme]);
   };
 
-  const clearBoardNameLocalStorage = () => {
+  const clearBoardLoaded = () => {
     window.localStorage.removeItem(BOARD_NAME_KEY);
     setIsBoardLoaded(false);
     setIsBoardInit(true);
+    //setAppTheme(defaultAppTheme);
+    setLoginInputsKeeper(emptyLoginInputsKeeper);
   };
 
   const getBoardNameLocalStorage = () => {
@@ -40,14 +46,17 @@ const useBoardState = () => {
   };
 
   return {
+    loginInputsKeeper,
+    setLoginInputsKeeper,
+    emptyLoginInputsKeeper,
     board,
     isBoardInit,
     setIsBoardInit,
     isBoardLoaded,
     setBoard,
     setBoardLoaded,
+    clearBoardLoaded,
     getBoardNameLocalStorage,
-    clearBoardNameLocalStorage,
   };
 };
 

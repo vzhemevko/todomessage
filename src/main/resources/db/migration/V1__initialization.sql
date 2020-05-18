@@ -7,7 +7,8 @@ create table board (
   time_zone character varying not null,
   emails character varying not null,
   theme smallint not null,
-  constraint board_pkey primary key (id)
+  constraint board_pkey primary key (id),
+  unique(name)
 );
 
 create table card (

@@ -7,13 +7,14 @@ import { useApi } from 'hooks/api/useApi';
 const useBoardApi = () => {
   const {
     board,
-    setBoard,
     setIsBoardInit,
     setBoardLoaded,
+    clearBoardLoaded,
     getBoardNameLocalStorage,
-    clearBoardNameLocalStorage,
+    setLoginInputsKeeper,
+    emptyLoginInputsKeeper,
   } = useBoardState();
-  const { openSuccessAlert, openErrorAlert } = useAlert();
+  const { openSuccessAlert, openWarningAlert, openErrorAlert } = useAlert();
   const { get, post, put, login, logout } = useApi();
   const { setIsLoading } = useLoader();
 
@@ -24,7 +25,7 @@ const useBoardApi = () => {
         setBoardLoaded(res.data);
       },
       () => {
-        clearBoardNameLocalStorage();
+        clearBoardLoaded();
         openErrorAlert('Sign in failed :(');
       }
     );
@@ -33,10 +34,10 @@ const useBoardApi = () => {
   const logoutBoard = () => {
     logout(
       () => {
-        clearBoardNameLocalStorage();
+        clearBoardLoaded();
       },
       () => {
-        clearBoardNameLocalStorage();
+        clearBoardLoaded();
         openErrorAlert('Sign out failed :(');
       }
     );
@@ -59,22 +60,28 @@ const useBoardApi = () => {
         setBoardLoaded(res.data);
       },
       () => {
-        clearBoardNameLocalStorage();
+        clearBoardLoaded();
         openErrorAlert('Failed to load the board');
       }
     );
   };
 
-  const createBoard = (boardToCreate, successMsg, errorMsg) => {
+  const createBoard = (boardToCreate) => {
     post(
       'boards',
       boardToCreate,
       () => {
-        setBoardLoaded(boardToCreate);
-        openSuccessAlert(successMsg);
+        openSuccessAlert(
+          'The Board has been created, please sign in to create a todo message'
+        );
+        setLoginInputsKeeper(emptyLoginInputsKeeper);
       },
-      () => {
-        openErrorAlert(errorMsg ? errorMsg : 'Failed to create the board');
+      (error) => {
+        let errorMsg = 'Failed to create the board';
+        if (error.response.status === 409) {
+          errorMsg = 'Board name already exists';
+        }
+        openWarningAlert(errorMsg);
       }
     );
   };
