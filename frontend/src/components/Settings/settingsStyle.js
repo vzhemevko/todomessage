@@ -26,6 +26,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 500,
     minWidth: 250,
   },
+  iconAction: {
+    color: theme.palette.action.main,
+  },
 }));
 
 export default useStyles;

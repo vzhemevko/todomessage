@@ -21,6 +21,8 @@ export default function TodoMsgSettings() {
   const { board, updateBoard, themes, appTheme, setAppTheme } = useApp();
   const [boardName, setBoardName] = React.useState(board.name);
   const [timeZone, setTimeZone] = React.useState(board.timeZone);
+  const [theme, setTheme] = React.useState(appTheme);
+  const [updateNeeded, setUpdateNeeded] = React.useState(false);
 
   const TimeZoneSelect = () => {
     return (
@@ -30,6 +32,7 @@ export default function TodoMsgSettings() {
         value={timeZone}
         onChange={(event, newValue) => {
           setTimeZone(newValue);
+          setUpdateNeeded(true);
         }}
         renderInput={(params) => (
           <TextField
@@ -47,11 +50,12 @@ export default function TodoMsgSettings() {
     return (
       <Autocomplete
         disableClearable
-        value={appTheme}
+        value={theme}
         options={themes}
         getOptionLabel={(option) => option.name}
         onChange={(event, newValue) => {
-          setAppTheme(newValue);
+          setTheme(newValue);
+          setUpdateNeeded(true);
         }}
         renderInput={(params) => (
           <TextField {...params} label="Theme" variant="outlined" fullWidth />
@@ -61,11 +65,12 @@ export default function TodoMsgSettings() {
   };
 
   const handleUpdateBoard = () => {
+    setAppTheme(theme);
     const boardToUpdate = {
       ...board,
       name: boardName,
       timeZone: timeZone,
-      theme: appTheme.index,
+      theme: theme.index,
     };
     updateBoard(
       boardToUpdate,
@@ -90,7 +95,10 @@ export default function TodoMsgSettings() {
                 variant="outlined"
                 fullWidth
                 value={boardName}
-                onChange={(e) => setBoardName(e.target.value)}
+                onChange={(e) => {
+                  setBoardName(e.target.value);
+                  setUpdateNeeded(true);
+                }}
               />
             </Box>
           </Box>
@@ -112,7 +120,7 @@ export default function TodoMsgSettings() {
         <Grid item>
           <Box display="flex" justifyContent="flex-end">
             <IconButton onClick={handleUpdateBoard}>
-              <SaveIcon />
+              <SaveIcon className={updateNeeded ? classes.iconAction : null} />
             </IconButton>
           </Box>
         </Grid>

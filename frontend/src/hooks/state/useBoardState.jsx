@@ -18,7 +18,6 @@ const useBoardState = () => {
     isBoardLoaded,
     setIsBoardLoaded,
     setAppTheme,
-    defaultAppTheme,
   } = React.useContext(AppStateContext);
   const { setCards } = useCardState();
 
@@ -30,14 +29,13 @@ const useBoardState = () => {
     setIsBoardLoaded(true);
     setIsBoardInit(true);
     setAppTheme(themes[boardToSet.theme]);
+    setLoginInputsKeeper(emptyLoginInputsKeeper);
   };
 
   const clearBoardLoaded = () => {
     window.localStorage.removeItem(BOARD_NAME_KEY);
     setIsBoardLoaded(false);
     setIsBoardInit(true);
-    //setAppTheme(defaultAppTheme);
-    setLoginInputsKeeper(emptyLoginInputsKeeper);
   };
 
   const getBoardNameLocalStorage = () => {
