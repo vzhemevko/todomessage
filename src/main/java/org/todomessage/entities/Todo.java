@@ -1,7 +1,8 @@
 package org.todomessage.entities;
 
 import javax.persistence.*;
-import java.sql.Time;
+import java.time.LocalTime;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -14,7 +15,7 @@ public class Todo {
     private String name;
 
     @Column(name = "due_time")
-    private Time dueTime;
+    private LocalTime dueTime;
 
     private Boolean ready;
 
@@ -42,11 +43,11 @@ public class Todo {
         this.name = name;
     }
 
-    public Time getDueTime() {
+    public LocalTime  getDueTime() {
         return dueTime;
     }
 
-    public void setDueTime(Time dueTime) {
+    public void setDueTime(LocalTime  dueTime) {
         this.dueTime = dueTime;
     }
 
@@ -80,5 +81,23 @@ public class Todo {
 
     public void setCard(Card card) {
         this.card = card;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Todo todo = (Todo) o;
+        return Objects.equals(name, todo.name) &&
+                Objects.equals(dueTime, todo.dueTime) &&
+                Objects.equals(ready, todo.ready) &&
+                Objects.equals(done, todo.done) &&
+                Objects.equals(position, todo.position) &&
+                Objects.equals(card, todo.card);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, dueTime, ready, done, position, card);
     }
 }

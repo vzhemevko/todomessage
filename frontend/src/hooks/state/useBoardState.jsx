@@ -19,13 +19,13 @@ const useBoardState = () => {
     setIsBoardLoaded,
     setAppTheme,
   } = React.useContext(AppStateContext);
-  const { setCards } = useCardState();
+  const { setCards, enableTodoModeRetention } = useCardState();
 
   const setBoardLoaded = (boardToSet) => {
     if (!boardToSet.name) return;
     window.localStorage.setItem(BOARD_NAME_KEY, boardToSet.name);
     setBoard(boardToSet);
-    setCards(boardToSet.cards);
+    setCards(enableTodoModeRetention(boardToSet.cards));
     setIsBoardLoaded(true);
     setIsBoardInit(true);
     setAppTheme(themes[boardToSet.theme]);

@@ -13,11 +13,23 @@ const useCardState = () => {
     return cards.filter((c) => c.id === cardId)[0];
   };
 
+  const enableTodoModeRetention = (cards) => {
+    cards.map((c) => {
+      c.todos.map((t) => {
+        if (t.mode === undefined) {
+          t.mode = 0; //default read mode
+        }
+      });
+    });
+    return cards;
+  };
+
   return {
     cards,
     setCards,
     setCard,
     getCard,
+    enableTodoModeRetention,
   };
 };
 

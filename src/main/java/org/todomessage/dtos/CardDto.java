@@ -1,6 +1,6 @@
 package org.todomessage.dtos;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,7 +8,7 @@ public class CardDto {
 
     private UUID id;
 
-    private Date day;
+    private LocalDate day;
 
     private UUID boardId;
 
@@ -22,11 +22,11 @@ public class CardDto {
         this.id = id;
     }
 
-    public Date getDay() {
+    public LocalDate  getDay() {
         return day;
     }
 
-    public void setDay(Date day) {
+    public void setDay(LocalDate  day) {
         this.day = day;
     }
 

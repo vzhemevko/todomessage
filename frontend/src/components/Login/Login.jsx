@@ -24,7 +24,7 @@ export default function TodoMsgLogin() {
     createBoard,
     loginBoard,
     openWarningAlert,
-    appTheme,
+    defaultAppTheme,
   } = useApp();
 
   const [isCreateBoard, setIsCreateBoard] = React.useState(
@@ -63,7 +63,7 @@ export default function TodoMsgLogin() {
       key: boardKey,
       timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       emails: [],
-      theme: appTheme.index,
+      theme: defaultAppTheme.index,
       cards: [],
     });
   };

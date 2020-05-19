@@ -1,6 +1,6 @@
 package org.todomessage.dtos;
 
-import java.sql.Time;
+import java.time.LocalTime;
 import java.util.UUID;
 
 public class TodoDto {
@@ -9,13 +9,13 @@ public class TodoDto {
 
     private String name;
 
-    private Time dueTime;
+    private LocalTime dueTime;
 
     private Boolean ready;
 
     private Boolean done;
 
-    private String position;
+    private Integer position;
 
     private UUID cardId;
 
@@ -35,11 +35,11 @@ public class TodoDto {
         this.name = name;
     }
 
-    public Time getDueTime() {
+    public LocalTime getDueTime() {
         return dueTime;
     }
 
-    public void setDueTime(Time dueTime) {
+    public void setDueTime(LocalTime  dueTime) {
         this.dueTime = dueTime;
     }
 
@@ -59,11 +59,11 @@ public class TodoDto {
         this.done = done;
     }
 
-    public String getPosition() {
+    public Integer getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Integer position) {
         this.position = position;
     }
 

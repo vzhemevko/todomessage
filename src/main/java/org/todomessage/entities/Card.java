@@ -1,17 +1,10 @@
 package org.todomessage.entities;
 
-import java.sql.Date;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 
 @Entity
 public class Card {
@@ -20,7 +13,7 @@ public class Card {
     @GeneratedValue
     private UUID id;
 
-    private Date day;
+    private LocalDate day;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
@@ -38,11 +31,11 @@ public class Card {
         this.id = id;
     }
 
-    public Date getDay() {
+    public LocalDate getDay() {
         return day;
     }
 
-    public void setDay(Date day) {
+    public void setDay(LocalDate  day) {
         this.day = day;
     }
 
@@ -60,5 +53,19 @@ public class Card {
 
     public void setTodos(Set<Todo> todos) {
         this.todos = todos;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return Objects.equals(day, card.day) &&
+                Objects.equals(board, card.board);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(day, board);
     }
 }

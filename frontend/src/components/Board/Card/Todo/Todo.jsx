@@ -12,13 +12,13 @@ import TodoNotifyOne from 'components/Board/Card/Todo/Notify/TodoNotify';
 import TodoReadOne from 'components/Board/Card/Todo/Read/TodoRead';
 import { useApp } from 'hooks/useApp';
 
+const READ_MODE = 0;
+const EDIT_MODE = 1;
+const NOTIFY_MODE = 2;
+
 export default function TodoMsgTodo(props) {
   const classes = useStyles();
   const [todoElevation, setTodoElevation] = React.useState(1);
-
-  const [edit, setEdit] = React.useState(false);
-  const [notify, setNotify] = React.useState(false);
-  const [read, setRead] = React.useState(true);
 
   const [todoState, setTodoState] = React.useState(props.todo);
   const [dueTimeFixed, setDueTimeFixed] = React.useState('06:00:00');
@@ -29,6 +29,19 @@ export default function TodoMsgTodo(props) {
     setTodoState(props.todo);
   }, [props.todo]);
 
+  const isMode = (mode) => {
+    switch (mode) {
+      case READ_MODE:
+        return props.todo.mode === READ_MODE;
+      case EDIT_MODE:
+        return props.todo.mode === EDIT_MODE;
+      case NOTIFY_MODE:
+        return props.todo.mode === NOTIFY_MODE;
+      default:
+        return false;
+    }
+  };
+
   const todoHoverOver = () => {
     setTodoElevation(10);
   };
@@ -36,22 +49,21 @@ export default function TodoMsgTodo(props) {
     setTodoElevation(3);
   };
 
-  const switchEdit = () => {
-    setEdit(true);
-    setNotify(false);
-    setRead(false);
+  const switchRead = () => {
+    handleDone();
+    updateTodo({ ...todoState, mode: READ_MODE });
   };
 
-  const switchRead = () => {
-    setEdit(false);
-    setNotify(false);
-    setRead(true);
-    handleDone();
-    updateTodo(todoState);
+  const switchEdit = () => {
+    props.todo.mode = EDIT_MODE;
+  };
+
+  const switchNotify = () => {
+    props.todo.mode = NOTIFY_MODE;
   };
 
   const handleDone = () => {
-    if (read) {
+    if (isMode(READ_MODE)) {
       props.todo.done = !props.todo.done;
       if (props.todo.done) {
         openInfoAlert('Notification are not sent for the completed todos');
@@ -59,14 +71,7 @@ export default function TodoMsgTodo(props) {
     }
   };
 
-  const switchNotify = () => {
-    setEdit(false);
-    setNotify(true);
-    setRead(false);
-  };
-
   const handleTodoDueTimeChange = (dueTime) => {
-    console.log(dueTime);
     setTodoState({ ...todoState, dueTime: dueTime });
     setDueTimeFixed(dueTime);
   };
@@ -90,19 +95,19 @@ export default function TodoMsgTodo(props) {
         <Box display="flex" justifyContent="flex-start" alignItems="center">
           <Box order={1} flexGrow={1}>
             <Box>
-              {read ? (
+              {isMode(READ_MODE) ? (
                 <Box onClick={switchEdit}>
                   <TodoReadOne todoState={todoState} onClick={switchEdit} />
                 </Box>
               ) : null}
-              {edit ? (
+              {isMode(EDIT_MODE) ? (
                 <TodoEditOne
                   todoState={todoState}
                   handleTodoNameChange={handleTodoNameChange}
                   switchRead={switchRead}
                 />
               ) : null}
-              {notify ? (
+              {isMode(NOTIFY_MODE) ? (
                 <TodoNotifyOne
                   todoState={todoState}
                   day={props.card.day}

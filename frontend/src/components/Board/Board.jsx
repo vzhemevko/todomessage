@@ -80,19 +80,9 @@ export default function TodoMsgBoard() {
           />
         </Box>
       </Paper>
-      <Box justifyContent="center" display="flex">
-        <IconButton>
-          <KeyboardArrowUpIcon style={{ fontSize: '50px' }} />
-        </IconButton>
-      </Box>
       {cards.map((c, index) => (
         <Card card={c} key={index} />
       ))}
-      <Box justifyContent="center" display="flex">
-        <IconButton>
-          <KeyboardArrowDownIcon style={{ fontSize: '50px' }} />
-        </IconButton>
-      </Box>
     </div>
   );
 }

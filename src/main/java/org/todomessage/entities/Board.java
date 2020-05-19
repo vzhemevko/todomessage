@@ -24,7 +24,8 @@ public class Board {
 
     private Short theme;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    @OrderBy("day ASC")
+    @OneToMany(mappedBy = "board", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Card> cards;
 
     public UUID getId() {

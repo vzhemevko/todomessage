@@ -7,12 +7,25 @@ import {
   CardActions,
   Grid,
   IconButton,
+  Typography,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+
+import { format, getDay, parseISO } from 'date-fns';
 
 import TodoOne from 'components/Board/Card/Todo/Todo';
 import { useApp } from 'hooks/useApp';
 import useStyles from 'components/Board/Card/cardStyle';
+
+const dayNames = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thursday',
+  'Friday',
+  'Saturday',
+];
 
 export default function TodoMsgCard(props) {
   const classes = useStyles();
@@ -35,8 +48,8 @@ export default function TodoMsgCard(props) {
     <div className={classes.root}>
       <Card className={classes.card} elevation={3}>
         <CardHeader
-          title={props.card.day}
-          subheader={props.card.day}
+          title={dayNames[getDay(parseISO(props.card.day))]}
+          subheader={format(parseISO(props.card.day), 'MMM d')}
           className={classes.cardHeader}
           classes={{
             title: classes.cardHeaderTitle,

@@ -72,16 +72,16 @@ const useBoardApi = () => {
       boardToCreate,
       () => {
         openSuccessAlert(
-          'The Board has been created, please sign in to create a todo message'
+          'The Board has been created, please sign in to add a todo message'
         );
         setLoginInputsKeeper(emptyLoginInputsKeeper);
       },
       (error) => {
-        let errorMsg = 'Failed to create the board';
         if (error.response.status === 409) {
-          errorMsg = 'Board name already exists';
+          openWarningAlert('Board name already exists');
+          return;
         }
-        openWarningAlert(errorMsg);
+        openErrorAlert('Failed to create the board');
       }
     );
   };

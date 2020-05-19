@@ -4,6 +4,7 @@ const useTodoState = () => {
   const { getCard, setCard } = useCardState();
 
   const addTodo = (todo) => {
+    todo.mode = 0; //default read mode
     let card = getCard(todo.cardId);
     card.todos.push(todo);
     setCard(card);
