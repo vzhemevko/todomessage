@@ -7,7 +7,6 @@ import {
   CardActions,
   Grid,
   IconButton,
-  Typography,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 
@@ -17,7 +16,7 @@ import TodoOne from 'components/Board/Card/Todo/Todo';
 import { useApp } from 'hooks/useApp';
 import useStyles from 'components/Board/Card/cardStyle';
 
-const dayNames = [
+const DAY_NAMES = [
   'Sunday',
   'Monday',
   'Tuesday',
@@ -26,6 +25,8 @@ const dayNames = [
   'Friday',
   'Saturday',
 ];
+
+const TODO_NUMBER_LIMIT = 10;
 
 export default function TodoMsgCard(props) {
   const classes = useStyles();
@@ -48,7 +49,7 @@ export default function TodoMsgCard(props) {
     <div className={classes.root}>
       <Card className={classes.card} elevation={3}>
         <CardHeader
-          title={dayNames[getDay(parseISO(props.card.day))]}
+          title={DAY_NAMES[getDay(parseISO(props.card.day))]}
           subheader={format(parseISO(props.card.day), 'MMM d')}
           className={classes.cardHeader}
           classes={{
@@ -74,13 +75,15 @@ export default function TodoMsgCard(props) {
         </div>
         <div className={classes.cardActions}>
           <CardActions disableSpacing>
-            <IconButton
-              aria-label="add todo"
-              onClick={handleAddTodo}
-              className={classes.cardActionsIcon}
-            >
-              <AddIcon fontSize="default" />
-            </IconButton>
+            {props.card.todos.length < TODO_NUMBER_LIMIT ? (
+              <IconButton
+                aria-label="add todo"
+                onClick={handleAddTodo}
+                className={classes.cardActionsIcon}
+              >
+                <AddIcon fontSize="default" />
+              </IconButton>
+            ) : null}
           </CardActions>
         </div>
       </Card>

@@ -113,8 +113,8 @@ export default function TodoMsgNavbar() {
             </ListItemIcon>
             <ListItemText primary="Settings" />
           </ListItem>
-          <ListItem button key="Signout">
-            <ListItemIcon onClick={logoutBoard}>
+          <ListItem button key="Signout" onClick={logoutBoard}>
+            <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
             <ListItemText primary="Sign out" />

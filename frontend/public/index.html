@@ -9,6 +9,20 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+
     <div id="root"></div>
+
+    <script src="https://unpkg.com/bowser@2.7.0/es5.js"></script>
+    <script>
+      window.onload = function (e) {
+        const result = bowser.getParser(window.navigator.userAgent);
+        const supportedBrowsers = ['Chrome', 'Firefox'];
+        if (!supportedBrowsers.includes(result.parsedResult.browser.name)) {
+          alert(
+            'You are using not supported browser by this application, this may be causing an unstable application execution. Supported browsers: Chromer, Firefox.'
+          );
+        }
+      };
+    </script>
   </body>
 </html>
