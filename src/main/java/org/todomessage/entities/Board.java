@@ -1,6 +1,7 @@
 package org.todomessage.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 
 import static java.util.Objects.nonNull;
@@ -23,10 +24,18 @@ public class Board {
     private String emails;
 
     private Short theme;
+    
+    @Column(name = "update_at")
+    private LocalDate updateAt;
 
     @OrderBy("day ASC")
     @OneToMany(mappedBy = "board", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Card> cards;
+    
+    @PreUpdate
+    protected void onUpdate() {
+        setUpdateAt(LocalDate.now());
+    }
 
     public UUID getId() {
         return id;
@@ -79,7 +88,15 @@ public class Board {
     public void setTheme(Short theme) {
         this.theme = theme;
     }
-
+    
+    public LocalDate getUpdateAt() {
+        return updateAt;
+    }
+    
+    public void setUpdateAt(LocalDate updateAt) {
+        this.updateAt = updateAt;
+    }
+    
     public Set<Card> getCards() {
         return cards;
     }

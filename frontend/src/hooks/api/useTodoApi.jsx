@@ -5,7 +5,7 @@ import { useAlert } from 'hooks/common/useAlert';
 
 const useTodoApi = () => {
   const { openErrorAlert } = useAlert();
-  const { todo, addTodo, setTodo, removeTodo } = useTodoState();
+  const { addTodo, getTodo, setTodo, removeTodo } = useTodoState();
   const { updateCard } = useCardApi();
   const { post, put, remove } = useApi();
 
@@ -23,7 +23,7 @@ const useTodoApi = () => {
   };
 
   const updateTodo = (todoToUpdate) => {
-    const prevTodo = todo;
+    const prevTodo = getTodo(todoToUpdate.cardId, todoToUpdate.id);
     setTodo(todoToUpdate);
     put(
       'todos',

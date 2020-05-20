@@ -13,5 +13,16 @@ spring:
         show_sql: true
     hibernate:
       ddl-auto: validate
+  mail:
+    host: smtp.gmail.com
+    username: <email>
+    password: <password>
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   flyway:
     schemas: todos

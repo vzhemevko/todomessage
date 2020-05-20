@@ -16,6 +16,11 @@ const useTodoState = () => {
     setCard(card);
   };
 
+  const getTodo = (cardId, todoId) => {
+    let card = getCard(cardId);
+    return card.todos.filter((t) => t.id === todoId)[0];
+  };
+
   const removeTodo = (todo) => {
     let card = getCard(todo.cardId);
     let index = card.todos.indexOf(todo);
@@ -29,6 +34,7 @@ const useTodoState = () => {
   return {
     addTodo,
     setTodo,
+    getTodo,
     removeTodo,
   };
 };

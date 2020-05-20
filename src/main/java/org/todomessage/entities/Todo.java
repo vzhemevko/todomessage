@@ -1,6 +1,7 @@
 package org.todomessage.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 import java.util.UUID;
@@ -26,6 +27,14 @@ public class Todo {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "card_id")
     private Card card;
+    
+    @Column(name = "update_at")
+    private LocalDate updateAt;
+    
+    @PreUpdate
+    protected void onUpdate() {
+        setUpdateAt(LocalDate.now());
+    }
 
     public UUID getId() {
         return id;
@@ -82,20 +91,28 @@ public class Todo {
     public void setCard(Card card) {
         this.card = card;
     }
-
+    
+    public LocalDate getUpdateAt() {
+        return updateAt;
+    }
+    
+    public void setUpdateAt(LocalDate updateAt) {
+        this.updateAt = updateAt;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Todo todo = (Todo) o;
         return Objects.equals(name, todo.name) &&
-                Objects.equals(dueTime, todo.dueTime) &&
-                Objects.equals(ready, todo.ready) &&
-                Objects.equals(done, todo.done) &&
-                Objects.equals(position, todo.position) &&
-                Objects.equals(card, todo.card);
+                   Objects.equals(dueTime, todo.dueTime) &&
+                   Objects.equals(ready, todo.ready) &&
+                   Objects.equals(done, todo.done) &&
+                   Objects.equals(position, todo.position) &&
+                   Objects.equals(card, todo.card);
     }
-
+    
     @Override
     public int hashCode() {
         return Objects.hash(name, dueTime, ready, done, position, card);
