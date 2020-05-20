@@ -1,5 +1,7 @@
 package org.todomessage.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +24,9 @@ import static java.time.temporal.ChronoUnit.HOURS;
 
 @Service
 public class BoardService {
-
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(BoardService.class);
+    
     private final BoardRepository boardRepository;
     private final BoardMapper boardMapper;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -74,6 +78,7 @@ public class BoardService {
             card.setDay(day);
             cards.add(card);
         }
+        LOGGER.info("New Cards for Board {} have been generated", board.getName());
         return cards;
     }
 
@@ -92,6 +97,7 @@ public class BoardService {
             todo.setDueTime(LocalTime.now(zoneId).plus(i, HOURS).truncatedTo(HOURS));
             todos.add(todo);
         }
+        LOGGER.info("Default Todos for Card {} have been generated", card.getDay());
         return todos;
     }
 }

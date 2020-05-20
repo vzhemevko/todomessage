@@ -1,5 +1,7 @@
 package org.todomessage.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSendException;
 import org.springframework.mail.SimpleMailMessage;
@@ -19,6 +21,8 @@ import java.util.List;
 
 @Service
 public class EmailService {
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
     
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
     private static final String SUBJECT_TEMPLATE = "Todomessage: %s";
@@ -86,6 +90,7 @@ public class EmailService {
             emailSender.send(message);
         } catch (MailSendException ex) {
             // Ignore it, due to the fact that invalid emails addresses could be provided
+            LOGGER.debug("Email send failure for email {}", to, ex);
         }
     }
 }

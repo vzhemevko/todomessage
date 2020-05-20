@@ -1,6 +1,8 @@
 package org.todomessage.configs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -15,7 +17,9 @@ import java.io.PrintWriter;
 
 @Component
 public class AuthSuccessHandler implements AuthenticationSuccessHandler {
-
+    
+    private static final Logger LOGGER = LoggerFactory.getLogger(AuthSuccessHandler.class);
+    
     private final ObjectMapper objectMapper;
     private final BoardService boardService;
 
@@ -31,5 +35,6 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
         PrintWriter out = response.getWriter();
         out.print(objectMapper.writeValueAsString(boardService.getByName(authentication.getName())));
         out.flush();
+        LOGGER.info("Authentication success - Board {}", authentication.getName());
     }
 }
