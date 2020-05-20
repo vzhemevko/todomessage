@@ -1,6 +1,5 @@
 package org.todomessage.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,8 +12,7 @@ import org.todomessage.repositories.BoardRepository;
 public class BoardDetailsService implements UserDetailsService {
 
     private final BoardRepository boardRepository;
-
-    @Autowired
+    
     public BoardDetailsService(final BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }

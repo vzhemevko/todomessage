@@ -2,7 +2,6 @@ package org.todomessage.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSendException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,7 +13,10 @@ import org.todomessage.entities.Todo;
 import org.todomessage.repositories.BoardRepository;
 import org.todomessage.repositories.TodoRepository;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -34,7 +36,6 @@ public class EmailService {
     private final BoardRepository boardRepository;
     private final TodoRepository todoRepository;
     
-    @Autowired
     public EmailService(final JavaMailSender emailSender,
                         final BoardRepository boardRepository,
                         final TodoRepository todoRepository) {
@@ -46,7 +47,6 @@ public class EmailService {
     @Transactional
     @Scheduled(fixedRate = 60_000)
     public void sendMessages() {
-        System.out.println(LocalDateTime.now());
         List<Board> boardList = boardRepository.findAll();
         boardList.forEach(board -> {
             verifyAndSendCards(board);

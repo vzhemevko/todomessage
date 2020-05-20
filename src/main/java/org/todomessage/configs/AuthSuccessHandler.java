@@ -24,7 +24,8 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
     private final BoardService boardService;
 
     @Autowired
-    public AuthSuccessHandler(ObjectMapper objectMapper, BoardService boardService) {
+    public AuthSuccessHandler(final ObjectMapper objectMapper,
+                              final BoardService boardService) {
         this.objectMapper = objectMapper;
         this.boardService = boardService;
     }

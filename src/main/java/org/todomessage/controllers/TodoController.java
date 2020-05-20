@@ -2,7 +2,6 @@ package org.todomessage.controllers;
 
 import org.springframework.web.bind.annotation.*;
 import org.todomessage.dtos.TodoDto;
-import org.todomessage.mappers.TodoMapper;
 import org.todomessage.services.TodoService;
 
 import java.util.List;
@@ -15,8 +14,7 @@ public class TodoController {
 
     private final TodoService todoService;
 
-    public TodoController(final TodoService todoService,
-                          final TodoMapper todoMapper) {
+    public TodoController(final TodoService todoService) {
         this.todoService = todoService;
     }
 
