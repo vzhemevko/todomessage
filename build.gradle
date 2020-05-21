@@ -38,3 +38,22 @@ compileJava {
     options.compilerArgs = ["-Amapstruct.defaultComponentModel=spring",
                             "-Amapstruct.unmappedTargetPolicy=IGNORE"]
 }
+
+task buildProduction(type: Exec) {
+    group = 'Build'
+    dependsOn clean
+    dependsOn build
+    build.mustRunAfter clean
+    doFirst {
+        delete  'src/main/resources/static'
+        workingDir 'frontend'
+        commandLine 'npm.cmd', 'run', 'build'
+    }
+    doLast {
+        copy {
+            from 'frontend/build'
+            into "src/main/resources/static"
+        }
+    }
+}
+

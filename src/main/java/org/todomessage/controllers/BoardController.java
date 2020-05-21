@@ -18,6 +18,8 @@ public class BoardController {
 
     @GetMapping
     public List<BoardDto> getAll() {
+        if (true)
+        throw new RuntimeException();
         return boardService.getAll();
     }
 

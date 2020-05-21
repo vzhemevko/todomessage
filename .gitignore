@@ -30,3 +30,6 @@ generated/
 
 ### VS Code ###
 .vscode/
+
+### Project ###
+src/main/resources/static

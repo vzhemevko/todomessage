@@ -48,7 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(POST, "/api/boards").permitAll() // registration
             .antMatchers("/api/**").authenticated()
             .antMatchers(HttpMethod.OPTIONS).permitAll()
-            .anyRequest().permitAll() // TODO
         .and()
             .formLogin()
             .successHandler((authSuccessHandler))
@@ -60,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .logout()
             .logoutSuccessHandler((request, response, authentication) -> {/*do nothing*/})
         .and()
-            .csrf().disable() // TODO
+            .csrf().disable()
             .httpBasic().disable();
     }
 

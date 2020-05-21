@@ -11,7 +11,7 @@ const emptyLoginInputsKeeper = {
   confirmBoardKey: '',
 };
 
-const defaultAppTheme = themes[1];
+const defaultAppTheme = themes[2];
 
 const AppStateProvider = ({ children }) => {
   const [loginInputsKeeper, setLoginInputsKeeper] = React.useState(

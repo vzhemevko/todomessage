@@ -19,7 +19,7 @@ public class BoardDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String boardName) throws UsernameNotFoundException {
-        Board board = boardRepository.findByName(boardName).orElseThrow(() -> new RuntimeException("Board not found."));
+        Board board = boardRepository.findByName(boardName).orElseThrow(() -> new RuntimeException("Board not found"));
         User.UserBuilder builder = User.withUsername(boardName);
         builder.password(board.getKey());
         builder.roles("BOARD");
