@@ -35,7 +35,8 @@ public class BoardService {
 
     @Transactional
     public BoardDto getByName(String name) {
-        Board board = boardRepository.findByName(name).orElseThrow(() -> new RuntimeException("Board not found"));
+        Board board = boardRepository.findByName(name.toLowerCase())
+                          .orElseThrow(() -> new RuntimeException("Board not found"));
         return boardMapper.toBoardDto(board);
     }
 

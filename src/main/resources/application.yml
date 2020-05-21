@@ -6,6 +6,8 @@ spring:
     url: jdbc:postgresql://${PGSERVER:localhost}:5432/todomsg
     username: postgres
     password: postgres
+    hikari:
+      maximum-pool-size: 20
   jpa:
     properties:
       hibernate:
