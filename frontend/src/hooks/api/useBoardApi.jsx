@@ -7,7 +7,7 @@ import { useApi } from 'hooks/api/useApi';
 const useBoardApi = () => {
   const {
     board,
-    setIsBoardInit,
+    setIsAppInitialized,
     setBoardLoaded,
     clearBoardLoaded,
     getBoardNameLocalStorage,
@@ -46,7 +46,7 @@ const useBoardApi = () => {
   const initBoard = () => {
     setIsLoading(true);
     if (!getBoardNameLocalStorage()) {
-      setIsBoardInit(true);
+      setIsAppInitialized(true);
       setIsLoading(false);
       return;
     }

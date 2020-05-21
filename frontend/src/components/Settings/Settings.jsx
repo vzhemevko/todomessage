@@ -80,51 +80,57 @@ export default function TodoMsgSettings() {
   };
 
   return (
-    <Paper className={classes.settingsPaper} elevation={3}>
-      <Grid container spacing={3} direction="column">
-        <Grid item>
-          <Box className={classes.settingsHeader}>
-            <Typography variant="subtitle1">Settings</Typography>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box display="flex" justifyContent="center">
-            <Box className={classes.settingsItem}>
-              <TextField
-                label="Board Name"
-                variant="outlined"
-                fullWidth
-                value={boardName}
-                onChange={(e) => {
-                  setBoardName(e.target.value);
-                  setUpdateNeeded(true);
-                }}
-              />
-            </Box>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box display="flex" justifyContent="center">
-            <Box className={classes.settingsItem}>
-              <TimeZoneSelect />
-            </Box>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box display="flex" justifyContent="center">
-            <Box className={classes.settingsItem}>
-              <ThemeSelect />
-            </Box>
-          </Box>
-        </Grid>
-        <Grid item>
-          <Box display="flex" justifyContent="flex-end">
-            <IconButton onClick={handleUpdateBoard}>
-              <SaveIcon className={updateNeeded ? classes.iconAction : null} />
-            </IconButton>
-          </Box>
-        </Grid>
+    <Grid container direction="row" justify="center" alignItems="center">
+      <Grid item xs={10} sm={10}>
+        <Paper className={classes.settingsPaper} elevation={3}>
+          <Grid container spacing={3} direction="column">
+            <Grid item>
+              <Box className={classes.settingsHeader}>
+                <Typography variant="subtitle1">Settings</Typography>
+              </Box>
+            </Grid>
+            <Grid item>
+              <Box display="flex" justifyContent="center">
+                <Box className={classes.settingsItem}>
+                  <TextField
+                    label="Board Name"
+                    variant="outlined"
+                    fullWidth
+                    value={boardName}
+                    onChange={(e) => {
+                      setBoardName(e.target.value);
+                      setUpdateNeeded(true);
+                    }}
+                  />
+                </Box>
+              </Box>
+            </Grid>
+            <Grid item>
+              <Box display="flex" justifyContent="center">
+                <Box className={classes.settingsItem}>
+                  <TimeZoneSelect />
+                </Box>
+              </Box>
+            </Grid>
+            <Grid item>
+              <Box display="flex" justifyContent="center">
+                <Box className={classes.settingsItem}>
+                  <ThemeSelect />
+                </Box>
+              </Box>
+            </Grid>
+            <Grid item>
+              <Box display="flex" justifyContent="flex-end">
+                <IconButton onClick={handleUpdateBoard}>
+                  <SaveIcon
+                    className={updateNeeded ? classes.iconAction : null}
+                  />
+                </IconButton>
+              </Box>
+            </Grid>
+          </Grid>
+        </Paper>
       </Grid>
-    </Paper>
+    </Grid>
   );
 }

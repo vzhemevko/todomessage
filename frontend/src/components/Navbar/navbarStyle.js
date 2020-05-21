@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   menuButton: {
-    marginRight: 36,
+    marginRight: theme.spacing(1),
   },
   hide: {
     display: 'none',
@@ -60,13 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-  logo: {
-    marginLeft: 10,
-    display: 'flex',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    paddingTop: theme.spacing(3),
   },
 }));
 

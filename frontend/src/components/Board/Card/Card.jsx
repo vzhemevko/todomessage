@@ -12,7 +12,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 import { format, getDay, parseISO } from 'date-fns';
 
-import TodoOne from 'components/Board/Card/Todo/Todo';
+import Todo from 'components/Board/Card/Todo/Todo';
 import { useApp } from 'hooks/useApp';
 import useStyles from 'components/Board/Card/cardStyle';
 
@@ -52,9 +52,6 @@ export default function TodoMsgCard(props) {
           title={DAY_NAMES[getDay(parseISO(props.card.day))]}
           subheader={format(parseISO(props.card.day), 'MMM d')}
           className={classes.cardHeader}
-          classes={{
-            title: classes.cardHeaderTitle,
-          }}
         />
         <div className={classes.cardContent}>
           <CardContent>
@@ -67,7 +64,7 @@ export default function TodoMsgCard(props) {
             >
               {props.card.todos.map((t, index) => (
                 <Grid item key={index}>
-                  <TodoOne card={props.card} todo={t} isNewTodo={false} />
+                  <Todo card={props.card} todo={t} isNewTodo={false} />
                 </Grid>
               ))}
             </Grid>

@@ -23,6 +23,11 @@ export default function TodoMsgTodoEdit({
           }
         }}
         color={'secondary'}
+        inputProps={{
+          style: {
+            height: 30,
+          },
+        }}
       />
     </Box>
   );

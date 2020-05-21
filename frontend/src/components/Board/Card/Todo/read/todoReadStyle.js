@@ -4,6 +4,9 @@ const useStyles = makeStyles((theme) => ({
   doneTodo: {
     textDecoration: 'line-through',
   },
+  todoBox: {
+    padding: 12,
+  },
 }));
 
 export default useStyles;

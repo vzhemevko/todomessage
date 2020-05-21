@@ -19,7 +19,7 @@ const AppStateProvider = ({ children }) => {
   );
 
   const [board, setBoard] = React.useState(false);
-  const [isBoardInit, setIsBoardInit] = React.useState(false);
+  const [isAppInitialized, setIsAppInitialized] = React.useState(false);
   const [isBoardLoaded, setIsBoardLoaded] = React.useState(false);
 
   const [cards, setCards] = React.useState([]);
@@ -41,8 +41,8 @@ const AppStateProvider = ({ children }) => {
 
         board,
         setBoard,
-        isBoardInit,
-        setIsBoardInit,
+        isAppInitialized,
+        setIsAppInitialized,
         isBoardLoaded,
         setIsBoardLoaded,
 

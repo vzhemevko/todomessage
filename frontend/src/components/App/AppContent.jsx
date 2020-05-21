@@ -10,7 +10,7 @@ import Login from 'components/Login/Login';
 import { useApp } from 'hooks/useApp';
 
 export default function TodoMsgAppContent() {
-  const { initBoard, isBoardInit, isBoardLoaded, appTheme } = useApp();
+  const { initBoard, isAppInitialized, isBoardLoaded, appTheme } = useApp();
 
   React.useEffect(() => {
     initBoard();
@@ -19,7 +19,7 @@ export default function TodoMsgAppContent() {
   const TodoMsg = () => {
     return (
       <div>
-        {isBoardInit ? (
+        {isAppInitialized ? (
           <div>{isBoardLoaded ? <Navbar /> : <Login />} </div>
         ) : null}
       </div>

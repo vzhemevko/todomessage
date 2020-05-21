@@ -4,8 +4,12 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     width: 110,
   },
-  selectEmpty: {
-    //marginTop: theme.spacing(1),
+  todoNotifyGrid: {
+    paddingTop: 0,
+    paddingBottom: 8,
+    paddingLeft: 15,
+    marginTop: 1,
+    marginBottom: -30,
   },
 }));
 

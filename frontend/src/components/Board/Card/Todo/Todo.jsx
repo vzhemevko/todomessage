@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { Box, IconButton, Paper } from '@material-ui/core';
+import { Box, IconButton, Paper, Grid } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import CheckIcon from '@material-ui/icons/Check';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AlarmOnIcon from '@material-ui/icons/AlarmOn';
 
 import useStyles from 'components/Board/Card/Todo/todoStyle';
-import TodoEditOne from 'components/Board/Card/Todo/Edit/TodoEdit';
-import TodoNotifyOne from 'components/Board/Card/Todo/Notify/TodoNotify';
-import TodoReadOne from 'components/Board/Card/Todo/Read/TodoRead';
+import TodoEdit from 'components/Board/Card/Todo/Edit/TodoEdit';
+import TodoNotify from 'components/Board/Card/Todo/Notify/TodoNotify';
+import TodoRead from 'components/Board/Card/Todo/Read/TodoRead';
 import { useApp } from 'hooks/useApp';
 
 const READ_MODE = 0;
@@ -92,58 +92,61 @@ export default function TodoMsgTodo(props) {
         onMouseOut={todoHoverOut}
         elevation={todoElevation}
       >
-        <Box display="flex" justifyContent="flex-start" alignItems="center">
-          <Box order={1} flexGrow={1}>
-            <Box>
-              {isMode(READ_MODE) ? (
-                <Box onClick={switchEdit}>
-                  <TodoReadOne todoState={todoState} onClick={switchEdit} />
-                </Box>
-              ) : null}
-              {isMode(EDIT_MODE) ? (
-                <TodoEditOne
-                  todoState={todoState}
-                  handleTodoNameChange={handleTodoNameChange}
-                  switchRead={switchRead}
-                />
-              ) : null}
-              {isMode(NOTIFY_MODE) ? (
-                <TodoNotifyOne
-                  todoState={todoState}
-                  day={props.card.day}
-                  dueTimeFixed={dueTimeFixed}
-                  handleTodoDueTimeChange={handleTodoDueTimeChange}
-                />
-              ) : null}
-            </Box>
-          </Box>
-          <Box order={2} display="flex">
-            <Box>
-              <IconButton
-                aria-label="check todo"
-                onClick={switchRead}
-                disabled={!todoState.ready}
-              >
-                <CheckIcon />
-              </IconButton>
-              <IconButton aria-label="edit todo" onClick={switchEdit}>
-                <EditIcon
-                  className={!todoState.ready ? classes.iconAction : null}
-                />
-              </IconButton>
-              <IconButton aria-label="alarm todo" onClick={switchNotify}>
-                <AlarmOnIcon />
-              </IconButton>
-              <IconButton
-                aria-label="delete todo"
-                onClick={handleTodoDelete}
-                className={classes.iconDefault}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </Box>
-          </Box>
-        </Box>
+        <Grid container direction="column" spacing={2}>
+          <Grid item xs className={classes.todoItem}>
+            {isMode(READ_MODE) ? (
+              <Box className={classes.todoRead} onClick={switchEdit}>
+                <TodoRead todoState={todoState} />
+              </Box>
+            ) : null}
+            {isMode(EDIT_MODE) ? (
+              <TodoEdit
+                todoState={todoState}
+                handleTodoNameChange={handleTodoNameChange}
+                switchRead={switchRead}
+              />
+            ) : null}
+            {isMode(NOTIFY_MODE) ? (
+              <TodoNotify
+                todoState={todoState}
+                day={props.card.day}
+                dueTimeFixed={dueTimeFixed}
+                handleTodoDueTimeChange={handleTodoDueTimeChange}
+              />
+            ) : null}
+          </Grid>
+          <Grid
+            item
+            xs
+            container
+            justify="flex-end"
+            className={classes.todoItem}
+          >
+            <IconButton
+              aria-label="check todo"
+              onClick={switchRead}
+              disabled={!todoState.ready}
+            >
+              <CheckIcon fontSize="small" />
+            </IconButton>
+            <IconButton aria-label="edit todo" onClick={switchEdit}>
+              <EditIcon
+                className={!todoState.ready ? classes.iconAction : null}
+                fontSize="small"
+              />
+            </IconButton>
+            <IconButton aria-label="alarm todo" onClick={switchNotify}>
+              <AlarmOnIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              aria-label="delete todo"
+              onClick={handleTodoDelete}
+              className={classes.iconDefault}
+            >
+              <DeleteIcon fontSize="small" />
+            </IconButton>
+          </Grid>
+        </Grid>
       </Paper>
     </div>
   );

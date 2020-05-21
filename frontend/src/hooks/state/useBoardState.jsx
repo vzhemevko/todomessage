@@ -8,13 +8,13 @@ const BOARD_NAME_KEY = 'TDMSGBDN';
 
 const useBoardState = () => {
   const {
-    emptyLoginInputsKeeper,
     loginInputsKeeper,
     setLoginInputsKeeper,
+    emptyLoginInputsKeeper,
     board,
     setBoard,
-    isBoardInit,
-    setIsBoardInit,
+    isAppInitialized,
+    setIsAppInitialized,
     isBoardLoaded,
     setIsBoardLoaded,
     setAppTheme,
@@ -26,8 +26,10 @@ const useBoardState = () => {
     window.localStorage.setItem(BOARD_NAME_KEY, boardToSet.name);
     setBoard(boardToSet);
     setCards(enableTodoModeRetention(boardToSet.cards));
+
     setIsBoardLoaded(true);
-    setIsBoardInit(true);
+    setIsAppInitialized(true);
+
     setAppTheme(themes[boardToSet.theme]);
     setLoginInputsKeeper(emptyLoginInputsKeeper);
   };
@@ -35,7 +37,7 @@ const useBoardState = () => {
   const clearBoardLoaded = () => {
     window.localStorage.removeItem(BOARD_NAME_KEY);
     setIsBoardLoaded(false);
-    setIsBoardInit(true);
+    setIsAppInitialized(true);
   };
 
   const getBoardNameLocalStorage = () => {
@@ -48,8 +50,8 @@ const useBoardState = () => {
     setLoginInputsKeeper,
     emptyLoginInputsKeeper,
     board,
-    isBoardInit,
-    setIsBoardInit,
+    isAppInitialized,
+    setIsAppInitialized,
     isBoardLoaded,
     setBoard,
     setBoardLoaded,

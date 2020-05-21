@@ -5,10 +5,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   card: {
-    maxWidth: 750,
-    minWidth: 250,
+    maxWidth: 700,
+    minWidth: 200,
     margin: `${theme.spacing(2)}px auto`,
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
   },
   todo: {
     width: '100%',
@@ -17,21 +17,15 @@ const useStyles = makeStyles((theme) => ({
   cardHeader: {
     background: theme.palette.secondary.main,
     borderRadius: 5,
-    //color: theme.palette.primary.main,
     paddingBottom: theme.spacing(1),
   },
-  cardHeaderTitle: {
-    //color: theme.palette.secondary.light,
-  },
   cardContent: {
-    //background: theme.palette.primary.main,
     borderRadius: 5,
   },
   cardActions: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    //background: theme.palette.secondary.main,
     borderRadius: 5,
   },
   cardActionsIcon: {

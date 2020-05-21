@@ -10,6 +10,16 @@ const useTodoState = () => {
     setCard(card);
   };
 
+  const removeTodo = (todo) => {
+    let card = getCard(todo.cardId);
+    let index = card.todos.indexOf(todo);
+    card.todos.splice(index, 1);
+    card.todos.forEach((t, index) => {
+      t.position = index;
+    });
+    return card;
+  };
+
   const setTodo = (todo) => {
     let card = getCard(todo.cardId);
     card.todos = card.todos.map((t) => (t.id === todo.id ? todo : t));
@@ -21,21 +31,11 @@ const useTodoState = () => {
     return card.todos.filter((t) => t.id === todoId)[0];
   };
 
-  const removeTodo = (todo) => {
-    let card = getCard(todo.cardId);
-    let index = card.todos.indexOf(todo);
-    card.todos.splice(index, 1);
-    card.todos.forEach((t, index) => {
-      t.position = index;
-    });
-    return card;
-  };
-
   return {
     addTodo,
+    removeTodo,
     setTodo,
     getTodo,
-    removeTodo,
   };
 };
 

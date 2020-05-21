@@ -6,13 +6,13 @@ import {
   Toolbar,
   Drawer,
   List,
-  Box,
   Typography,
   Divider,
   IconButton,
   ListItem,
   ListItemIcon,
   ListItemText,
+  Grid,
 } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -62,14 +62,24 @@ export default function TodoMsgNavbar() {
             <MenuIcon />
           </IconButton>
           <NotificationsNoneIcon fontSize="large" />
-          <Box className={classes.logo}>
-            <Typography variant="h5" noWrap>
-              Todomessage
-            </Typography>
-            <Typography variant="caption" noWrap>
-              &nbsp; receive messages about things you need to do
-            </Typography>
-          </Box>
+          <Grid
+            container
+            direction="column"
+            justify="flex-start"
+            alignItems="flex-start"
+            wrap="nowrap"
+          >
+            <Grid item xs={8} sm={10}>
+              <Typography variant="h5" noWrap>
+                Todomessage
+              </Typography>
+            </Grid>
+            <Grid item xs={8} sm={10}>
+              <Typography noWrap>
+                &nbsp; receive messages about things you need to do
+              </Typography>
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
     );
@@ -128,16 +138,25 @@ export default function TodoMsgNavbar() {
     <Router>
       <div className={classes.root}>
         <HeaderBar />
-        <SiderBar />
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Route exact path="/">
-            <Board />
-          </Route>
-          <Route exact path="/settings">
-            <Settings />
-          </Route>
-        </main>
+        <Grid container direction="row" justify="flex-start">
+          <Grid item xs={2}>
+            <SiderBar />
+          </Grid>
+          <Grid item xs={10} sm={10} md={8} lg={8} xl={8}>
+            <main className={classes.content}>
+              <div className={classes.toolbar} />
+              <Route exact path="/">
+                <Board />
+              </Route>
+              <Route exact path="/settings">
+                <Settings />
+              </Route>
+            </main>
+          </Grid>
+          <Grid item xs={false} sm={false} md={2} lg={2} xl={2}>
+            <Typography>&nbsp;</Typography>
+          </Grid>
+        </Grid>
       </div>
     </Router>
   );

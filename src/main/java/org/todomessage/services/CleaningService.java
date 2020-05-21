@@ -65,7 +65,8 @@ public class CleaningService {
         if (lastUpdate.isBefore(today.minus(BOARD_RETENTION_PERIOD_DAYS, DAYS))) {
             boardRepository.delete(board);
             boardRepository.flush();
-            LOGGER.info("Board {} has not been used in 30 days and will be deleted", board.getName());
+            LOGGER.info("Board {} has not been used in {} days and will be deleted",
+                board.getName(), BOARD_RETENTION_PERIOD_DAYS);
             return null;
         }
         return board;

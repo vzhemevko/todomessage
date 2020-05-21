@@ -7,9 +7,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 3),
   },
   emailPaper: {
-    minWidth: 250,
-    maxWidth: 1000,
-    margin: `${theme.spacing(2)}px auto`,
     padding: theme.spacing(2),
   },
   emailHeader: {
@@ -40,6 +37,12 @@ const useStyles = makeStyles((theme) => ({
   },
   emailsNotValid: {
     color: theme.palette.action.main,
+  },
+  emailChip: {
+    minWidth: 70,
+  },
+  emailChipInput: {
+    minHeight: 15,
   },
 }));
 

@@ -2,10 +2,10 @@ import React from 'react';
 
 import {
   Typography,
-  Box,
   MenuItem,
   FormControl,
   Select,
+  Grid,
 } from '@material-ui/core';
 
 import {
@@ -28,11 +28,18 @@ export default function TodoMsgTodoNotify({
   const classes = useStyles();
 
   return (
-    <Box display="flex" alignItems="center">
-      <Box m={1}>
-        <Typography variant="subtitle2">Notify</Typography>
-      </Box>
-      <Box m={1} display="flex" alignItems="center">
+    <Grid
+      container
+      spacing={2}
+      alignItems="center"
+      className={classes.todoNotifyGrid}
+    >
+      <Grid item xs={10} sm={2} md={2} lg={2} xl={2}>
+        <Typography variant="subtitle1" align="left">
+          Notify
+        </Typography>
+      </Grid>
+      <Grid item xs={10} sm={4} md={4} lg={4} xl={8}>
         <FormControl className={classes.formControl}>
           <Select
             value={dueTimeFixed}
@@ -47,19 +54,19 @@ export default function TodoMsgTodoNotify({
             <MenuItem value={'18:00:00'}>Evening</MenuItem>
           </Select>
         </FormControl>
-      </Box>
-      <Box m={1}>
+      </Grid>
+      <Grid item xs={10} sm={4} md={4} lg={4} xl={4}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardTimePicker
             ampm={false}
             value={`${day}T${todoState.dueTime}`}
-            onChange={(time) =>
-              handleTodoDueTimeChange(format(time, 'hh:mm:ss'))
-            }
+            onChange={(time) => {
+              handleTodoDueTimeChange(format(time, 'HH:mm:ss'));
+            }}
             className={classes.formControl}
           />
         </MuiPickersUtilsProvider>
-      </Box>
-    </Box>
+      </Grid>
+    </Grid>
   );
 }

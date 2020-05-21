@@ -17,7 +17,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
-    implementation group: 'org.flywaydb', name: 'flyway-core', version: '6.4.1'
+
+    implementation group: 'org.flywaydb', name: 'flyway-core', version: "${flywaydbVersion}"
 
     runtimeOnly 'org.postgresql:postgresql'
 
@@ -38,7 +39,7 @@ compileJava {
     options.compilerArgs = ["-Amapstruct.defaultComponentModel=spring",
                             "-Amapstruct.unmappedTargetPolicy=IGNORE"]
 }
-
+import org.apache.tools.ant.taskdefs.condition.Os
 task buildProduction(type: Exec) {
     group = 'Build'
     dependsOn clean
@@ -46,8 +47,12 @@ task buildProduction(type: Exec) {
     build.mustRunAfter clean
     doFirst {
         delete  'src/main/resources/static'
+        String npm = 'npm';
+        if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+            npm = 'npm.cmd'
+        }
         workingDir 'frontend'
-        commandLine 'npm.cmd', 'run', 'build'
+        commandLine npm, 'run', 'build'
     }
     doLast {
         copy {

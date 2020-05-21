@@ -7,13 +7,13 @@ import useStyles from 'components/Board/Card/Todo/Read/todoReadStyle';
 export default function TodoMsgTodoRead({ todoState }) {
   const classes = useStyles();
   return (
-    <Box>
+    <Box className={classes.todoBox}>
       {todoState.ready ? (
         <Typography
           variant="subtitle1"
           className={todoState.done ? classes.doneTodo : null}
         >
-          {todoState.name}{' '}
+          {todoState.name}
         </Typography>
       ) : (
         <Typography variant="subtitle2" color="textSecondary">

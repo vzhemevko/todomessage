@@ -7,10 +7,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0, 3),
   },
   settingsPaper: {
-    minWidth: 250,
-    maxWidth: 1000,
+    maxWidth: 700,
+    minWidth: 200,
     margin: `${theme.spacing(2)}px auto`,
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
   },
   settingsHeader: {
     display: 'flex',
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   settingsItem: {
     width: '100%',
     maxWidth: 500,
-    minWidth: 250,
+    minWidth: 200,
   },
   iconAction: {
     color: theme.palette.action.main,
