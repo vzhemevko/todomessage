@@ -4,8 +4,6 @@ import org.springframework.web.bind.annotation.*;
 import org.todomessage.dtos.BoardDto;
 import org.todomessage.services.BoardService;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/boards")
 public class BoardController {
@@ -14,13 +12,6 @@ public class BoardController {
     
     public BoardController(final BoardService boardService) {
         this.boardService = boardService;
-    }
-
-    @GetMapping
-    public List<BoardDto> getAll() {
-        if (true)
-        throw new RuntimeException();
-        return boardService.getAll();
     }
 
     @GetMapping("/{name}")

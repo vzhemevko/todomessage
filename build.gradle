@@ -39,6 +39,7 @@ compileJava {
     options.compilerArgs = ["-Amapstruct.defaultComponentModel=spring",
                             "-Amapstruct.unmappedTargetPolicy=IGNORE"]
 }
+
 import org.apache.tools.ant.taskdefs.condition.Os
 task buildProduction(type: Exec) {
     group = 'Build'

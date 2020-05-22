@@ -32,3 +32,6 @@ spring:
         size: 2
   flyway:
     schemas: todos
+todomessage:
+  cleaning-service:
+    enabled: false

@@ -2,6 +2,7 @@ package org.todomessage.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,7 @@ public class CleaningService {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(CleaningService.class);
     
+    private static final String DEMO_BOARD_NAME = "demo";
     private static final int BOARD_RETENTION_PERIOD_DAYS = 30;
     private static final int CARD_RETENTION_PERIOD_DAYS = 1;
     
@@ -28,6 +30,9 @@ public class CleaningService {
     private final CardRepository cardRepository;
     private final TodoRepository todoRepository;
     private final CardService cardService;
+    
+    @Value("${todomessage.cleaning-service.enabled}")
+    private boolean isEnabled;
     
     public CleaningService(final BoardRepository boardRepository,
                            final CardRepository cardRepository,
@@ -49,12 +54,15 @@ public class CleaningService {
     @Transactional
     @Scheduled(cron = "0 1 0 * * *")
     public void startCleaning() {
-        List<Board> boardList =  boardRepository.findAll();
-        boardList.forEach(board -> {
-            final LocalDate today = LocalDate.now();
-            if (removeNotUsedBoards(board, today) == null) {return;}
-            removeOldAndAddNewCards(board, today);
-        });
+        if (isEnabled) {
+            List<Board> boardList =  boardRepository.findAll();
+            boardList.forEach(board -> {
+                if (DEMO_BOARD_NAME.equals(board.getName())) {return;}
+                final LocalDate today = LocalDate.now();
+                if (removeNotUsedBoards(board, today) == null) {return;}
+                removeOldAndAddNewCards(board, today);
+            });
+        }
     }
     
     private Board removeNotUsedBoards(Board board, LocalDate today) {

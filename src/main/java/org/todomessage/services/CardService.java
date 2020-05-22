@@ -53,13 +53,9 @@ public class CardService {
         final Set<Card> cards = new HashSet<>();
         
         for (int i = 0; i < cardsCount; i++) {
-            Card card = generateNewCard(board, null);
-            if (i == 0) {
-                card.setDay(LocalDate.now(zoneId));
-                card.setTodos(todoService.generateDefaultTodos(card, zoneId));
-            } else {
-                card.setDay(LocalDate.now(zoneId).plus(i, ChronoUnit.DAYS));
-            }
+            LocalDate day = i == 0 ? LocalDate.now(zoneId) : LocalDate.now(zoneId).plus(i, ChronoUnit.DAYS);
+            Card card = generateNewCard(board, day);
+            card.setTodos(i == 0 ? todoService.generateDefaultTodos(card, zoneId) : null);
             cards.add(card);
         }
         LOGGER.info("New Cards for Board {} have been generated", board.getName());
