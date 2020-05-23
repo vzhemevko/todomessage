@@ -19,6 +19,4 @@ public interface CardMapper {
     Card toCardEntity(CardDto card);
 
     List<Card> toCardEntityList(List<CardDto> cards);
-
-
 }

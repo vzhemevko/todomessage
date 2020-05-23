@@ -12,10 +12,7 @@ import org.todomessage.repositories.TodoRepository;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 import static java.time.temporal.ChronoUnit.HOURS;
 
@@ -51,14 +48,27 @@ public class TodoService {
         todoRepository.deleteById(id);
     }
     
+    /**
+     * Generate a set of default todos. The default todos should be used during a new card creation.
+     * No database insertion.
+     *
+     * @param card entity for which the card to be generated.
+     * @param zoneId to be used for the due time generation.
+     * @return a set of generated todos.
+     */
     public Set<Todo> generateDefaultTodos(Card card, ZoneId zoneId) {
         final int todosCount = 2;
         final Set<Todo> todos = new HashSet<>();
-        final String[] todoNames = {"Buy groceries", "Do the laundry"};
+        final String[] todoNames = {
+            "Buy groceries", "Do the laundry", "Call Mom",
+            "Buy Milk", "Meet with Mike", "Finish the project",
+            "Organize photos from the vacation", "Gym: running 30 minutes and bench press"
+        };
+        Random r = new Random();
         
         for (int i = 0; i < todosCount; i++) {
             Todo todo = new Todo();
-            todo.setName(todoNames[i]);
+            todo.setName(todoNames[r.nextInt(todoNames.length -1)]);
             todo.setDone(true);
             todo.setReady(true);
             todo.setCard(card);

@@ -21,6 +21,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+/**
+ * Email scheduled service at fixed-rate 1 minute. The service monitors all the card entities and their
+ * todos for the to-do notification due time.
+ */
 @Service
 public class EmailService {
     
@@ -54,6 +58,11 @@ public class EmailService {
         });
     }
     
+    /**
+     * Verify each card in the given board and verify their todos for the notification due time.
+     *
+     * @param board entity to be verified.
+     */
     private void verifyAndSendCards(Board board) {
         final ZoneId zoneId = ZoneId.of(board.getTimeZone());
         final LocalDate today = LocalDate.now(zoneId);
@@ -68,6 +77,16 @@ public class EmailService {
         });
     }
     
+    /**
+     * Verify given to-do for the notification due time and send an email notification if the
+     * now is 1 minute to due time or due time is in the past.
+     * <p/>
+     * NOTE: The to-do should be ready and not done.
+     *
+     * @param todo entity to verified.
+     * @param zoneId of the to-do's board.
+     * @param emails board's emails to which the notification messages should be sent.
+     */
     private void verifyAndSendTodos(Todo todo, ZoneId zoneId, List<String> emails) {
         LocalTime nowTime = LocalTime.now(zoneId);
         LocalTime dueTime = todo.getDueTime();
@@ -82,6 +101,14 @@ public class EmailService {
         }
     }
     
+    /**
+     * Generate {@link SimpleMailMessage} and send to the given parameters.
+     *
+     * @param to recipient.
+     * @param subject
+     * @param todo part of the email content.
+     * @param at part of the email content.
+     */
     private void sendMessage(String to, String subject, String todo, LocalTime at) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(FROM_TEMPLATE);

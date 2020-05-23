@@ -47,6 +47,41 @@ public class CardService {
         return cardMapper.toCardDto(cardRepository.save(cardMapper.toCardEntity(cardDto)));
     }
     
+    /**
+     * Generate a new card entity for the given board entity. No database insertion.
+     *
+     * @param board entity for which the card to be generated.
+     * @param day which is assigned to the card.
+     * @param todos set of todos which is assigned to the card.
+     * @return a new generated card.
+     */
+    public Card generateNewCard(Board board, LocalDate day, Set<Todo> todos) {
+        Card card = new Card();
+        card.setBoard(board);
+        card.setDay(day);
+        card.setTodos(todos);
+        LOGGER.info("New Card {} for Board {} have been generated", card.getDay(), board.getName());
+        return card;
+    }
+    
+    /**
+     * @see CardService#generateNewCard(Board, LocalDate, Set)
+     *
+     * @param board entity for which the card to be generated.
+     * @param day which is assigned to the card.
+     * @return a new generated card.
+     */
+    public Card generateNewCard(Board board, LocalDate day) {
+        return generateNewCard(board, day, null);
+    }
+    
+    /**
+     * Generate a set of default cards. The default cards should be used during a new board creation.
+     * No database insertion.
+     *
+     * @param board entity for which the cards to be generated.
+     * @return a set of generated cards.
+     */
     public Set<Card> generateDefaultCards(Board board) {
         final int cardsCount = 8;
         final ZoneId zoneId = ZoneId.of(board.getTimeZone());
@@ -62,16 +97,6 @@ public class CardService {
         return cards;
     }
     
-    public Card generateNewCard(Board board, LocalDate day) {
-        return generateNewCard(board, day, null);
-    }
     
-    public Card generateNewCard(Board board, LocalDate day, Set<Todo> todos) {
-        Card card = new Card();
-        card.setBoard(board);
-        card.setDay(day);
-        card.setTodos(todos);
-        LOGGER.info("New Card {} for Board {} have been generated", card.getDay(), board.getName());
-        return card;
-    }
+   
 }

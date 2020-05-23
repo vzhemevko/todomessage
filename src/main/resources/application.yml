@@ -34,4 +34,7 @@ spring:
     schemas: todos
 todomessage:
   cleaning-service:
-    enabled: false
+    enabled: true
+    schedule:
+      cron: 0 1 0 * * *
+      fixedRate:

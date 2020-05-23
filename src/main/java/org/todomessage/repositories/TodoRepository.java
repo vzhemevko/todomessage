@@ -12,5 +12,3 @@ public interface TodoRepository extends JpaRepository<Todo, UUID> {
     
     Optional<Todo> findFirstByCard_Board_IdOrderByUpdateAtDesc(UUID boardId);
 }
-
-
