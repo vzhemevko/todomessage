@@ -101,6 +101,7 @@ export default function TodoMsgSettings() {
                       setBoardName(e.target.value);
                       setUpdateNeeded(true);
                     }}
+                    disabled={boardName === 'demo' ? true : null}
                   />
                 </Box>
               </Box>
