@@ -1,8 +1,35 @@
-## Todomessage 
+## Todomessage
+
+### Table of contents
+------------
+
+   * [What is it? ](#What is it?)
+   * [Motivation](#Motivation)
+      * [Idea](#Idea)
+      * [Limitations](#Limitations)
+      * [Live demo](#Live demo)
+           * [Todomesage on Heroku](#Todomesage on Heroku)
+   * [Getting Started](#Getting Started)
+      * [Prerequisites](#Prerequisites)
+      * [Installing](#Installing)
+      * [Dev environment](#Dev environment)
+      * [Deployment](#Deployment)
+   * [Contributing](#Contributing)
+   * [Authors](#Authors)
+   * [License](#License)
+   * [Built With](#Built With)
+   * [Demo](#Getting Started)
+      * [Sign in using demo board](#Sign in using demo board)
+      * [Create a new board and receive a to-do notification message](#Create a new board and receive a to-do notification message)
+      * [Customize your board. Change name, time zone or application theme](#Customize your board. Change name, time zone or application theme)
+
+------------
 
 ### What is it? 
 
 Todomessage is an example application of using the Spring Boot framework, React.js (Hooks) library and Material UI React framework.
+
+------------
 
 ### Motivation
 
@@ -40,6 +67,8 @@ This is a demo project so a few limitations were applied.
 The project is deployed on Heroku as part of the free plan. This means you can create a board there and other data however the application will go in a sleep mode after 30 minutes of inactivity, thus it can not be used for actual notification messages.
 
 You can deploy the application on some other hosting platforms set up the SMTP server details and receive the email notifications.
+
+------------
 
 ### Getting Started
 
@@ -142,18 +171,26 @@ After that, the production build could be found in the `todomessage/build/libs` 
 java  -jar todomessage/build/libs/*.jar
 ```
 
+------------
+
+
 ### Contributing
 
 Feel free to submit pull requests
+
+------------
 
 ### Authors
 
 * **Vasyl Zhemevko** - *Initial work* - [vzhemevko](https://github.com/vzhemevko)
 
+------------
 
 ### License
 
 This project is licensed under the MIT License
+
+------------
 
 ### Built With
 
@@ -161,4 +198,32 @@ This project is licensed under the MIT License
 * [React.js](https://reactjs.org) 
 * [Material UI](https://material-ui.com) 
 
+------------
+
 ### Demo
+
+ [Live demo](#Live demo)
+
+#### Sign in using demo board
+
+------------
+
+![alt text](https://github.com/vzhemevko/todomessage/blob/master/demo/create-new-board-and-todo.gif?raw=true)
+
+------------
+
+#### Create a new board and receive a to-do notification message
+
+------------
+
+![alt text](https://github.com/vzhemevko/todomessage/blob/master/demo/sign-in-demo-board.gif?raw=true)
+
+------------
+
+#### Customize your board - change name, time zone or application theme
+
+------------
+
+![alt text](https://github.com/vzhemevko/todomessage/blob/master/demo/settings-and-theme.gif?raw=true)
+
+------------
