@@ -1,9 +1,5 @@
 ## Todomessage
 
-### Table of contents
-------------
-
-  * [Table of contents](#table-of-contents)
   * [What is Todomessage](#what-is-todomessage)
   * [Motivation](#motivation)
     + [Idea](#idea)
@@ -207,13 +203,13 @@ This project is licensed under the MIT License
 #### Sign in using demo board
 
 
-![alt text](https://github.com/vzhemevko/todomessage/blob/master/demo/create-new-board-and-todo.gif?raw=true)
+![alt text](https://github.com/vzhemevko/todomessage/blob/master/demo/sign-in-demo-board.gif?raw=true)
 
 
 #### Create a new board and receive a to-do notification message
 
 
-![alt text](https://github.com/vzhemevko/todomessage/blob/master/demo/sign-in-demo-board.gif?raw=true)
+![alt text](https://github.com/vzhemevko/todomessage/blob/master/demo/create-new-board-and-todo.gif?raw=true)
 
 
 #### Change board name time zone or application theme
