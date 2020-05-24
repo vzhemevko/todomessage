@@ -3,29 +3,29 @@
 ### Table of contents
 ------------
 
-   * [What is it? ](#What is it?)
-   * [Motivation](#Motivation)
-      * [Idea](#Idea)
-      * [Limitations](#Limitations)
-      * [Live demo](#Live demo)
-           * [Todomesage on Heroku](#Todomesage on Heroku)
-   * [Getting Started](#Getting Started)
-      * [Prerequisites](#Prerequisites)
-      * [Installing](#Installing)
-      * [Dev environment](#Dev environment)
-      * [Deployment](#Deployment)
-   * [Contributing](#Contributing)
-   * [Authors](#Authors)
-   * [License](#License)
-   * [Built With](#Built With)
-   * [Demo](#Getting Started)
-      * [Sign in using demo board](#Sign in using demo board)
-      * [Create a new board and receive a to-do notification message](#Create a new board and receive a to-do notification message)
-      * [Customize your board. Change name, time zone or application theme](#Customize your board. Change name, time zone or application theme)
-
+  * [Table of contents](#table-of-contents)
+  * [What is Todomessage](#what-is-todomessage)
+  * [Motivation](#motivation)
+    + [Idea](#idea)
+    + [Limitations](#limitations)
+    + [Live demo](#live-demo)
+  * [Getting Started](#getting-started)
+    + [Prerequisites](#prerequisites)
+    + [Installing](#installing)
+    + [Dev environment](#dev-environment)
+    + [Deployment](#deployment)
+  * [Contributing](#contributing)
+  * [Authors](#authors)
+  * [License](#license)
+  * [Built With](#built-with)
+  * [Demo](#demo)
+    + [Sign in using demo board](#sign-in-using-demo-board)
+    + [Create a new board and receive a to-do notification message](#create-a-new-board-and-receive-a-to-do-notification-message)
+    + [Change board name time zone or application theme](#change-board-name-time-zone-or-application-theme)
+    
 ------------
 
-### What is it? 
+### What is Todomessage
 
 Todomessage is an example application of using the Spring Boot framework, React.js (Hooks) library and Material UI React framework.
 
@@ -202,27 +202,22 @@ This project is licensed under the MIT License
 
 ### Demo
 
- [Live demo](#Live demo)
+[Live demo](#live-demo)
 
 #### Sign in using demo board
 
-------------
 
 ![alt text](https://github.com/vzhemevko/todomessage/blob/master/demo/create-new-board-and-todo.gif?raw=true)
 
-------------
 
 #### Create a new board and receive a to-do notification message
 
-------------
 
 ![alt text](https://github.com/vzhemevko/todomessage/blob/master/demo/sign-in-demo-board.gif?raw=true)
 
-------------
 
-#### Customize your board - change name, time zone or application theme
+#### Change board name time zone or application theme
 
-------------
 
 ![alt text](https://github.com/vzhemevko/todomessage/blob/master/demo/settings-and-theme.gif?raw=true)
 
