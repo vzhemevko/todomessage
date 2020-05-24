@@ -21,7 +21,7 @@
   * [Demo](#demo)
     + [Sign in using demo board](#sign-in-using-demo-board)
     + [Create a new board and receive a to-do notification message](#create-a-new-board-and-receive-a-to-do-notification-message)
-    + [Customize your board change name time zone or application theme](#customize-your-board-change-name-time-zone-or-application-theme)
+    + [Change board name time zone or application theme](#change-board-name-time-zone-or-application-theme)
     
 ------------
 
@@ -202,7 +202,7 @@ This project is licensed under the MIT License
 
 ### Demo
 
- [Live demo](#Live demo)
+[Live demo](#live-demo)
 
 #### Sign in using demo board
 
@@ -216,7 +216,7 @@ This project is licensed under the MIT License
 ![alt text](https://github.com/vzhemevko/todomessage/blob/master/demo/sign-in-demo-board.gif?raw=true)
 
 
-#### Customize your board change name time zone or application theme
+#### Change board name time zone or application theme
 
 
 ![alt text](https://github.com/vzhemevko/todomessage/blob/master/demo/settings-and-theme.gif?raw=true)
