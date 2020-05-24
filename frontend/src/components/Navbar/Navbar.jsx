@@ -20,6 +20,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import SettingsIcon from '@material-ui/icons/Settings';
+import InfoIcon from '@material-ui/icons/Info';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
@@ -27,6 +28,7 @@ import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import useStyles from 'components/Navbar/navbarStyle';
 import Board from 'components/Board/Board';
 import Settings from 'components/Settings/Settings';
+import About from 'components/About/About';
 import { useApp } from 'hooks/useApp';
 
 export default function TodoMsgNavbar() {
@@ -129,6 +131,12 @@ export default function TodoMsgNavbar() {
             </ListItemIcon>
             <ListItemText primary="Sign out" />
           </ListItem>
+          <ListItem button key="About" component={Link} to="/about">
+            <ListItemIcon>
+              <InfoIcon />
+            </ListItemIcon>
+            <ListItemText primary="About" />
+          </ListItem>
         </List>
       </Drawer>
     );
@@ -150,6 +158,9 @@ export default function TodoMsgNavbar() {
               </Route>
               <Route exact path="/settings">
                 <Settings />
+              </Route>
+              <Route exact path="/about">
+                <About />
               </Route>
             </main>
           </Grid>
