@@ -42,10 +42,9 @@ compileJava {
 
 import org.apache.tools.ant.taskdefs.condition.Os
 task buildProduction(type: Exec) {
-    group = 'Build'
+	group = 'Build'
     dependsOn clean
-    dependsOn build
-    build.mustRunAfter clean
+    finalizedBy build
     doFirst {
         delete  'src/main/resources/static'
         String npm = 'npm';
