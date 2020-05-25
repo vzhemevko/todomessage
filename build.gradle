@@ -52,14 +52,8 @@ task buildProduction(type: Exec) {
         if (Os.isFamily(Os.FAMILY_WINDOWS)) {
             npm = 'npm.cmd'
         }
-        exec {
-            workingDir 'frontend'
-            commandLine npm, 'install'
-        }
-        exec {
-            workingDir 'frontend'
-            commandLine npm, 'run', 'build'
-        }
+        workingDir 'frontend'
+        commandLine npm, 'run', 'build'
     }
     doLast {
         copy {

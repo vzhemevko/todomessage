@@ -88,9 +88,11 @@ Follow the below steps to run the application on your local env.
 git clone https://github.com/vzhemevko/todomessage.git
 ```
 
-Navigate to the root directory and run a production build command
+Navigate to frontend directory install node modules. Then to the root directory and run a production build command
 
 ```
+cd todomessage/frontend
+npm install
 cd todomessage
 gradlew buildProduction
 ```

@@ -21,7 +21,7 @@ export default function TodoMsgAbout() {
               <Typography variant="subtitle2">What is Todomessage?</Typography>
               <br />
               <Typography variant="body2">
-                Todomessage is an example application of using the Spring Boot
+                Todomessage is an example application built with the Spring Boot
                 framework, React.js (Hooks) library and Material UI React
                 framework.
               </Typography>
@@ -37,17 +37,20 @@ export default function TodoMsgAbout() {
               <br />
               <Typography variant="body2">
                 Receive group email notifications about your to-do things. You
-                and your friends are working on some project after some
-                discussion you agreed on some list of things you need to do.
-                Create a board add your emails to the board list and create some
-                to-dos to be reminded about them. Todomeasge has three basic
-                concepts Board, Card and Todo. The board is basically is a user
-                account. You need to have a board to sign in. When you sign in
-                you see the cards that are basically a representation of a
-                particular day. The card has a list of todos. Each todo has its
-                name and due time. When the due time of the todo approached an
-                email will be sent to all the emails which are assigned to the
-                board.
+                and your friends are working on some projects after some
+                discussion you agreed on a list of things you need to do. Create
+                a board, add your emails to the board list and create the to-dos
+                to be reminded about them.
+                <p />
+                Todomeasge has three basic concepts Board, Card and Todo.
+                <p />
+                The board is basically is a user account. You need to have a
+                board to sign in. When you sign in you see the cards that are a
+                representation of the particular day.
+                <p />
+                The card has a list of todos. Each todo has its name and due
+                time. When the due time of the todo approaches an email will be
+                sent to all the email addresses which are assigned to the board.
               </Typography>
               <br />
               <Typography variant="subtitle2">Limitations</Typography>
@@ -74,7 +77,7 @@ export default function TodoMsgAbout() {
                   messages.
                   <p />
                   You can deploy the application on some other hosting platforms
-                  set up the SMTP server details and receive the email
+                  configure the SMTP server details and receive the email
                   notifications.
                 </Typography>
               </Typography>
