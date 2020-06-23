@@ -150,7 +150,7 @@ public class CleaningService {
      */
     private void addNewCards(Board board){
         final int cardsMaxAmount = 8;
-        LocalDate lastCardDay = board.getCards().stream().map(c -> c.getDay()).max(LocalDate::compareTo).get();
+        LocalDate lastCardDay = getLastCardDay(board);
         LocalDate newLastCardDay = lastCardDay.plus(cardsMaxAmount - board.getCards().size() , DAYS);
         
         long untilCardsMax = lastCardDay.until(newLastCardDay, DAYS);
@@ -178,5 +178,12 @@ public class CleaningService {
                 cardRepository.save(card);
             }
         });
+    }
+    
+    private LocalDate getLastCardDay(Board board) {
+        if (board.getCards().size() == 0) {
+            return LocalDate.now().minus(1, DAYS);
+        }
+        return board.getCards().stream().map(c -> c.getDay()).max(LocalDate::compareTo).get();
     }
 }
