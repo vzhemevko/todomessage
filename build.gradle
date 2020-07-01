@@ -19,6 +19,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'
 
     implementation group: 'org.flywaydb', name: 'flyway-core', version: "${flywaydbVersion}"
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: "${springdocVersion}"
 
     runtimeOnly 'org.postgresql:postgresql'
 
