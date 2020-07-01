@@ -18,7 +18,7 @@
     + [Sign in using demo board](#sign-in-using-demo-board)
     + [Create a new board and receive a to-do notification message](#create-a-new-board-and-receive-a-to-do-notification-message)
     + [Change board name time zone or application theme](#change-board-name-time-zone-or-application-theme)
-    + [OpenAPI/Swagger 3.0 documentation](#openapi/swagger-3.0-documentation)
+    + [OpenAPI documentation](#openapi-documentation)
     
     
 ------------
@@ -223,7 +223,9 @@ This project is licensed under the MIT License
 ![alt text](https://github.com/vzhemevko/todomessage/blob/master/demo/settings-and-theme.gif?raw=true)
 
 
-#### OpenAPI/Swagger 3.0 documentation
+#### OpenAPI documentation
+
+###### OpenAPI/Swagger 3.0 documentation
 
 https://todomessage.herokuapp.com/swagger-ui.html
 
